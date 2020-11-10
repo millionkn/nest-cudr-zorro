@@ -1,0 +1,4 @@
+<nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择" [ngModel]="selectingIndex" (ngModelChange)="selectChangeHandler($event)" [nzMode]="mode">
+  <nz-option *ngFor="let item of items;let i = index" [nzValue]="i" [nzLabel]="text(items[i])">
+  </nz-option>
+</nz-select>

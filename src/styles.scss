@@ -1,0 +1,56 @@
+/* You can add global styles to this file, and also import other style files */
+.tablePage {
+  nz-header {
+    background-color: #ffffff;
+    padding: 0;
+    margin: 0px;
+    height: 80px;
+
+    >.filter {
+      display: flex;
+      align-items: center;
+      float: left;
+      height: 100%;
+
+      >.item {
+        margin-left: 12px;
+        display: flex;
+
+        >.label {
+          margin-right: 12px;
+        }
+
+        >.control {
+          >input {
+            border-radius: 2px;
+          }
+        }
+      }
+
+    }
+
+    >.right {
+      display: flex;
+      align-items: center;
+      float: right;
+      height: 100%;
+      margin-right: 16px;
+    }
+
+    margin-bottom: 16px;
+  }
+
+  nz-content {
+    min-height: 100%;
+  }
+}
+
+nz-select {
+  min-width: 120px;
+}
+
+.ant-card[body-not-padding] {
+  .ant-card-body {
+    padding: 0px;
+  }
+}
