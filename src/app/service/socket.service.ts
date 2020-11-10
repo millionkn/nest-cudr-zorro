@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import * as io from 'socket.io-client';
 import { Subject, Observable, Observer, from } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { concatMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +18,14 @@ export class SocketService implements OnDestroy {
   }
   send<R>(event: string, arg: { [key: string]: any }) {
     return from(new Promise<R>((res) => {
-      this.socket.emit(event, arg, (ret: { data: R }) => res(ret.data));
+      this.socket.emit(event, arg, (ret: R) => res(ret));
     }));
   }
   on<R>(event: string): Observable<R> {
     const subject = new Subject<any>();
     let count = 0;
     const fun = (args: any) => subject.next(args);
-    const observable: Observable<{ data: any }> = Observable.create((observer: Observer<any>) => {
+    const observable: Observable<R> = Observable.create((observer: Observer<R>) => {
       if (count < 0) { throw new Error(); }
       if (count === 0) {
         this.socket.on(event, fun);
@@ -39,13 +39,12 @@ export class SocketService implements OnDestroy {
         sub.unsubscribe();
       };
     });
-    return observable.pipe(map(({ data }) => data));
+    return observable;
   }
   watch<R>(event: string, arg: { [key: string]: any }) {
-    const sid = `${Math.random()}`;
-    const ret = this.on<R>(`${event}?sid=${sid}`);
-    this.emit(event, { sid, data: arg });
-    return ret;
+    return this.send<{ eventInterface: string }>(event, arg).pipe(
+      concatMap(({ eventInterface }) => this.on<R>(eventInterface))
+    );
   }
   ngOnDestroy() {
     this.emitEvent.complete();
