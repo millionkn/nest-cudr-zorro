@@ -91,7 +91,7 @@ export class ModalBinderFactoryService {
       ),
       async editHandler(entity?: E) {
         try {
-          await editorService.showEditor(injector, entity || {} as any, klass, async (copy) => {
+          await editorService.showEditor(injector, entity || new klass(), klass, async (copy) => {
             try {
               await http.post(`cudr/transaction`, [
                 {
