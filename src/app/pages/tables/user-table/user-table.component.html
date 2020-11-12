@@ -1,5 +1,11 @@
 <nz-layout class="tablePage">
   <nz-header>
+    <div class="filter">
+      <span>名字</span>
+      <div>
+        <input nz-input placeholder="" [(ngModel)]="username" />
+      </div>
+    </div>
     <div class="right">
       <button nz-button nzType="primary" style="margin-left: 10px;float:right" (click)="binder.editHandler()">
         <i nz-icon nzType="plus" nzTheme="outline"></i> 添加

@@ -12,21 +12,20 @@
       float: left;
       height: 100%;
 
-      >.item {
-        margin-left: 12px;
+      >div {
         display: flex;
 
-        >.label {
+        >span {
+          margin-left: 12px;
           margin-right: 12px;
         }
 
-        >.control {
+        >div {
           >input {
-            border-radius: 2px;
+            width: 150px;
           }
         }
       }
-
     }
 
     >.right {
@@ -35,6 +34,11 @@
       float: right;
       height: 100%;
       margin-right: 16px;
+
+      >button {
+        margin-left: 6px;
+        margin-right: 6px;
+      }
     }
 
     margin-bottom: 16px;

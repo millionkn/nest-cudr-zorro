@@ -4,6 +4,9 @@ import { ModalBinderFactoryService } from 'src/app/modal-editor/modal-binder-fac
 import { EditorIs, EditorTitle } from 'src/app/modal-editor/decorators';
 import { StringEditorComponent } from 'src/app/modal-editor/editors/string-editor/string-editor.component';
 import { ItemEditorComponent } from 'src/app/modal-editor/editors/item-editor/item-editor.component';
+import { ReplaySubject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { QueryOption } from 'src/app/service/json-query.service';
 
 @EditorTitle('用户')
 class View extends UserEntity {
@@ -38,13 +41,31 @@ class View extends UserEntity {
 })
 export class UserTableComponent implements OnInit {
 
+  name = '';
+  selectEvent = new ReplaySubject<null>(1);
+
   constructor(
     @Inject(Injector) private injector: Injector,
     @Inject(ModalBinderFactoryService) private factory: ModalBinderFactoryService,
   ) { }
-  binder = this.factory.create(View, this.injector, {
-    groups: {},
-  });
+  binder = this.factory.create(View, this.injector, this.selectEvent.pipe(
+    map(() => {
+      const where: QueryOption<View> = {
+        name: {
+          '': {
+            like: this.name,
+          }
+        },
+        groups: {},
+      };
+      return where;
+    })
+  ));
   async ngOnInit() {
+    this.reset();
+    this.selectEvent.next(null);
+  }
+  reset() {
+    this.name = '';
   }
 }
