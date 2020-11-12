@@ -10,7 +10,7 @@ export type QueryOption<T extends BaseEntity<any>> = {
   : T[key] extends BaseEntity<any> ? QueryOption<T[key]> & { ''?: { isNull?: boolean } }
   : T[key] extends Array<infer X> ? X extends BaseEntity<any> ? QueryOption<X> & { ''?: { isEmpty?: boolean } } : never
   : T[key] extends DateString ? { ''?: { ''?: { sortIndex?: number }, isNull?: boolean, lessOrEqual?: string, moreOrEqual?: string } }
-  : T[key] extends string ? { ''?: { ''?: { sortIndex?: number }, like?: string, equal?: string } }
+  : T[key] extends string ? { ''?: { ''?: { sortIndex?: number }, like?: string[] | string, equal?: string } }
   : T[key] extends number ? { ''?: { ''?: { sortIndex?: number }, lessOrEqual?: number, moreOrEqual?: number } }
   : T[key] extends boolean ? { ''?: { equal: boolean } }
   : never
