@@ -40,5 +40,6 @@ export class DateEditorComponent implements Editor<string, {}>, OnInit {
     this.newValue.next();
   }
   ngOnInit() {
+    this.valueChangeHandler(null);
   }
 }
