@@ -21,6 +21,10 @@ export class TableEditorComponent<T> implements OnInit, OnDestroy {
 
   labels = new Array<string>();
   destory = new Array<() => void>();
+  beforeSaveArr = new Array<() => Promise<any>>();
+  async beforeSave() {
+    await Promise.all(this.beforeSaveArr.map((fun) => fun()));
+  }
 
   async ngOnInit() {
     const decortedKeys = loadDecoratedKeys(EditorIs, this.templateKlass);
@@ -37,6 +41,12 @@ export class TableEditorComponent<T> implements OnInit, OnDestroy {
       componentRef.instance.value = this.entity[key as keyof T];
       setParamsFun.push(() => {
         componentRef.instance.setParams(info.params(this.entity));
+      });
+      this.beforeSaveArr.push(async () => {
+        const unbindBeforeSave = componentRef.instance.beforeSave;
+        if (!unbindBeforeSave) { return; }
+        const beforeSave = unbindBeforeSave.bind(componentRef.instance);
+        await beforeSave();
       });
       const subscription = componentRef.instance.newValue.subscribe(() => {
         this.entity[key as keyof T] = componentRef.instance.value;

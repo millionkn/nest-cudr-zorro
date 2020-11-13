@@ -26,9 +26,15 @@ export class ModalEditorService {
           entity: JSON.parse(JSON.stringify(entity)),
         },
         nzOnOk: async (instance: TableEditorComponent<T>) => {
-          const result = await onOK(instance.entity);
-          if (result) { res(); }
-          return result;
+          try {
+            await instance.beforeSave();
+            const result = await onOK(instance.entity);
+            if (result) { res(); }
+            return result;
+          } catch (e) {
+            console.error(e);
+            return false;
+          }
         },
         nzOnCancel: () => {
           rej();
