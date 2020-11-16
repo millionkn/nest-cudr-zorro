@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { loadDecoratorData } from '../utils/decorator';
 import { Entity } from './decorators';
 import { BehaviorSubject, Observable, of, OperatorFunction } from 'rxjs';
-import { share, tap, combineLatest, mergeMap, map, startWith, zip, debounceTime } from 'rxjs/operators';
+import { share, tap, combineLatest, mergeMap, map, zip, debounceTime } from 'rxjs/operators';
 import { QueryOption, JsonQueryService } from '../service/json-query.service';
 
 type Binder<E, To> = {
@@ -82,12 +82,10 @@ export class ModalBinderFactoryService {
       needRefresh$,
       data$: request$.pipe(
         map(({ data }) => data),
-        startWith([] as To[]),
       ),
       loading$: loading$.asObservable(),
       total$: request$.pipe(
         map(({ total }) => total),
-        startWith(0),
       ),
       async editHandler(entity?: E) {
         try {
