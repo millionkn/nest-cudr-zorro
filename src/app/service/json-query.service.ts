@@ -1,8 +1,7 @@
 import { Injectable, Inject, Type } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { loadDecoratorData } from '../utils/decorator';
-import { Entity } from '../modal-editor/decorators';
-import { BaseEntity, ID, DateString } from '../utils/entity';
+import { BaseEntity, ID, DateString, Entity } from '../utils/entity';
 
 export type QueryOption<T extends BaseEntity<any>> = {
   [key in Extract<keyof T, string>]?

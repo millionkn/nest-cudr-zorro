@@ -2,8 +2,6 @@ import { createKlassDecorator, createKeyDecorator } from 'src/app/utils/decorato
 import { Editor } from './utils';
 import { Type } from '@angular/core';
 
-export const Entity = createKlassDecorator(`entity`, () => (str: string) => str);
-
 export const EditorIs = createKeyDecorator(`EditorIs`, (klass: Type<any>, key: string) => <P, L extends P>(opt: {
   label: string,
   component: () => Type<Editor<any, P>>,

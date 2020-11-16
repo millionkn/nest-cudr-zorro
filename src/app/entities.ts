@@ -1,5 +1,4 @@
-import { Entity } from './modal-editor/decorators';
-import { BaseEntity, ID, DateString } from './utils/entity';
+import { BaseEntity, ID, DateString, Entity } from './utils/entity';
 
 class CudrBase<T> implements BaseEntity<T>{
   id!: ID<T>;

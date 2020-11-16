@@ -1,9 +1,8 @@
 import { Injectable, Inject, Injector, Type } from '@angular/core';
 import { ModalEditorService } from './modal-editor.service';
-import { BaseEntity } from '../utils/entity';
+import { BaseEntity, Entity } from '../utils/entity';
 import { HttpClient } from '@angular/common/http';
 import { loadDecoratorData } from '../utils/decorator';
-import { Entity } from './decorators';
 import { BehaviorSubject, Observable, of, OperatorFunction } from 'rxjs';
 import { share, tap, combineLatest, mergeMap, map, zip, debounceTime } from 'rxjs/operators';
 import { QueryOption, JsonQueryService } from '../service/json-query.service';
