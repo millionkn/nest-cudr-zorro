@@ -108,7 +108,7 @@ export class ModalBinderFactoryService {
       },
       async deleteHandler(entity: E) {
         loading$.next(true);
-        await http.post(`cudr/transtroctor`, [
+        await http.post(`cudr/transaction`, [
           {
             type: 'delete',
             entityName: loadDecoratorData(Entity, klass),
