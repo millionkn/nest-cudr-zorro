@@ -1,0 +1,207 @@
+/*
+  学习资料：https://www.jianshu.com/p/a99764ff3c41
+ */
+
+
+@mixin bg-img($url,$size:100% 100%) {
+  background: {
+    position: center;
+    image: url($url);
+    repeat: no-repeat;
+    size: $size;
+  }
+}
+
+@mixin centre($axis: "both") {
+  position: absolute;
+  @if $axis == "y" {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  @if $axis == "x" {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+  @if $axis == "both" {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+@mixin threeText($left, $top) {
+  position: absolute;
+  width: 25%;
+  top: $top;
+  left: $left;
+  color: white;
+  text-align: center;
+  letter-spacing: 2px;
+  font: {
+    weight: bold;
+    family: 'xiaomi';
+    size: 26px;
+  }
+}
+
+
+@mixin iconhistory($top) {
+  position: absolute;
+  width: 43px;
+
+  top: $top;
+  right: 5px;
+  pointer-events: auto;
+  border: 1px solid #4290C9;
+  background-color: rgba(26, 46, 60, 220);
+  color: #ffffff;
+  text-align: center;
+  font: {
+    family: 'xiaomi';
+    -webkit-font-smoothing: subpixel-antialiased;
+    size: 14px;
+  };
+  cursor: pointer;
+}
+
+@mixin iconPorperty($top) {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: $top;
+  right: 5px;
+  @include bg-img('../../../../../../assets/imgs/main/real/property.png', 100%);
+}
+
+
+@mixin name-value($margintop,$namewidth,$fontsize:18px ,$unitsize:18px) {
+  position: absolute;
+  margin-top: $margintop;
+  height: 30px;
+  color: #ffffff;
+  right: 0px;
+  font: {
+    family: 'xiaomi';
+    -webkit-font-smoothing: subpixel-antialiased;
+    size: $fontsize;
+  };
+  .name {
+    float: right;
+    text-align: right;
+    font-size: $unitsize;
+    line-height: 23px;
+  }
+  .value {
+    line-height: 23px;
+    margin-right: 6px;
+    float: right;
+    text-align: right;
+  }
+}
+
+
+@mixin title-value-unit($top) {
+  position: absolute;
+  top: $top;
+  width: 100%;
+  color: white;
+  font: {
+    family: 'xiaomi';
+    size: 18px;
+  }
+  .title {
+    float: left;
+    letter-spacing: 1px;
+  }
+  .value {
+    float: right;
+  }
+  .unit {
+    margin-left: 5px;
+    float: right;
+  }
+}
+
+@mixin value-degrees($top) {
+  position: absolute;
+  top: $top;
+  right: 0px;
+  width: 240px;
+  height: 30px;
+  color: #ffffff;
+  font: {
+    family: 'xiaomi';
+    -webkit-font-smoothing: subpixel-antialiased;
+    size: 14px;
+  };
+  .name {
+    padding-top: 10px;
+    float: right;
+    width: auto;
+    text-align: right;
+    margin-left: 10px;
+  }
+  .value {
+    float: right;
+    text-align: right;
+    font: {
+      size: 24px;
+    };
+  }
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  -webkit-text-fill-color: #ededed !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  background-color: transparent;
+  background-image: none;
+  transition: background-color 50000s ease-in-out 0s; //背景色透明  生效时长  过渡效果  启用时延迟的时间
+}
+
+
+.diag_footer {
+  width: 100%;
+  height: 40px;
+  margin-top: 30px;
+
+  .diag_reset {
+    float: left;
+    cursor: pointer;
+  }
+
+  .diag_cancel {
+    cursor: pointer;
+  }
+
+  .diag_ok {
+    cursor: pointer;
+  }
+
+  div {
+    float: right;
+    family: 'FZHZHYS';
+    -webkit-font-smoothing: subpixel-antialiased;
+    font-size: 22px;
+    color: #ffffff;
+    padding: 10px;
+  }
+}
+
+
+.blurMask {
+  filter: blur(10px) brightness(0%);
+  pointer-events: none;
+}

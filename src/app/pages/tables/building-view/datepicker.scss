@@ -1,0 +1,414 @@
+// .ant-card-bordered {
+//   background-color: #0f2a41;
+// }
+::ng-deep .ant-card {
+  background-color: #0f2a41;
+  color: white;
+  border-bottom: none;
+  width: 23vw;
+  height: 170px;
+  border-right: 1px solid white;
+  border-left: 1px solid white;
+  border-top: none;
+}
+
+::ng-deep .ant-card {
+  position: relative;
+}
+
+// 给card加上下边框
+::ng-deep .ant-card::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+::ng-deep .ant-card::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 100%;
+  right: 0;
+  top: 0;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+::ng-deep .ant-card-head {
+  border-bottom: none;
+  background-color: #061629;
+}
+
+::ng-deep .ant-card-head-title {
+  color: white
+}
+
+::ng-deep .ant-calendar-input {
+  width: 100%;
+  height: 22px;
+  color: rgba(255, 255, 255, 1);
+  background: rgba(22, 40, 63, 0);
+  border: 0;
+  outline: 0;
+  cursor: auto;
+}
+
+::ng-deep .ant-input {
+  box-sizing: border-box;
+  //margin: 0;
+  //padding: 0;
+  font-variant: tabular-nums;
+  list-style: none;
+  font-feature-settings: 'tnum';
+  //position: relative;
+  display: inline-block;
+  width: 100%;
+  //  height: 27px;
+  //  padding-left: 10px;
+  color: rgba(255, 255, 255, 1);
+  font: {
+    family: 'xiaomi';
+    -webkit-font-smoothing: subpixel-antialiased;
+    size: 17px;
+  };
+  //line-height: 1.5;
+  background-color: rgba(0,0,0,0);
+  background-image: none;
+  //  border: 1px solid #3D8FCC;
+  //  border-radius: 1px;
+  transition: all 0.3s;
+
+}
+
+::ng-deep .ant-calendar-picker-icon {
+  display: inline-block;
+  color: rgba(255, 255, 255, 1);
+  font-size: 14px;
+  line-height: 1;
+}
+
+::ng-deep .ant-calendar-date {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+  padding: 0;
+  color: rgba(255, 255, 255, 1);
+  line-height: 22px;
+  text-align: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  transition: background 0.3s ease;
+}
+
+::ng-deep .ant-calendar-input-wrap {
+  height: 34px;
+  padding: 6px 10px;
+  border-bottom: 0px solid #e8e8e8;
+}
+
+::ng-deep .ant-calendar-picker-clear {
+  z-index: 2;
+  color: #ffffff;
+  font-size: 14px;
+  background: #16283F;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+}
+
+::ng-deep .ant-calendar-picker-clear:hover {
+  z-index: 2;
+  color: #ffffff;
+  font-size: 14px;
+  background: #16283F;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+::ng-deep .ant-calendar {
+  position: relative;
+  width: 280px;
+  font: {
+    family: 'xiaomi';
+    -webkit-font-smoothing: subpixel-antialiased;
+    size: 16px;
+  };
+  color: white;
+  line-height: 1.5;
+  text-align: left;
+  list-style: none;
+  background-color: rgba(22, 40, 63, 1);
+  background-clip: padding-box;
+  border: 0px solid #fff;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+::ng-deep .ant-calendar-header {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-bottom: 0px solid #e8e8e8;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+::ng-deep .ant-calendar-header .ant-calendar-year-select,
+::ng-deep .ant-calendar-header .ant-calendar-month-select {
+  display: inline-block;
+  padding: 0 2px;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 500;
+  line-height: 40px;
+}
+
+::ng-deep .ant-calendar-header .ant-calendar-prev-century-btn,
+::ng-deep .ant-calendar-header .ant-calendar-next-century-btn,
+::ng-deep .ant-calendar-header .ant-calendar-prev-decade-btn,
+::ng-deep .ant-calendar-header .ant-calendar-next-decade-btn,
+::ng-deep .ant-calendar-header .ant-calendar-prev-month-btn,
+::ng-deep .ant-calendar-header .ant-calendar-next-month-btn,
+::ng-deep .ant-calendar-header .ant-calendar-prev-year-btn,
+::ng-deep .ant-calendar-header .ant-calendar-next-year-btn {
+  position: absolute;
+  top: 0;
+  display: inline-block;
+  padding: 0 5px;
+  color: rgba(255, 255, 255, 1);
+  font-size: 16px;
+  font-family: Arial, 'Hiragino Sans GB', 'Microsoft Yahei', 'Microsoft Sans Serif', sans-serif;
+  line-height: 40px;
+}
+
+::ng-deep .ant-calendar-footer {
+  padding: 0 12px;
+  line-height: 38px;
+  border-top: 0px solid #e8e8e8;
+}
+
+::ng-deep .ant-calendar-last-month-cell .ant-calendar-date,
+::ng-deep .ant-calendar-next-month-btn-day .ant-calendar-date {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+::ng-deep .ant-calendar-selected-day .ant-calendar-date {
+  background: #3D8FCC;
+}
+
+::ng-deep .ant-calendar .ant-calendar-today-btn:only-child,
+::ng-deep .ant-calendar .ant-calendar-clear-btn:only-child {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+::ng-deep .ant-calendar-month-panel,
+::ng-deep .ant-calendar-year-panel {
+  position: absolute;
+  top: 1px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background: rgba(22, 40, 63, 1);
+  border-radius: 0px;
+  outline: none;
+}
+
+::ng-deep .ant-calendar-year-panel-year,
+::ng-deep .ant-calendar-month-panel-month {
+  display: inline-block;
+  height: 24px;
+  margin: 0 auto;
+  padding: 0 8px;
+  color: rgba(255, 255, 255, 1);
+  line-height: 24px;
+  text-align: center;
+  background: transparent;
+  border-radius: 2px;
+  transition: background 0.3s ease;
+  font: {
+    family: 'xiaomi';
+    -webkit-font-smoothing: subpixel-antialiased;
+    size: 17px;
+  };
+}
+
+::ng-deep .ant-calendar-month-panel-header .ant-calendar-month-panel-year-select,
+::ng-deep .ant-calendar-month-panel-header .ant-calendar-month-panel-month-select {
+  display: inline-block;
+  padding: 0 2px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  line-height: 40px;
+}
+
+::ng-deep .ant-calendar-month-panel-header .ant-calendar-month-panel-prev-century-btn,
+::ng-deep .ant-calendar-month-panel-header .ant-calendar-month-panel-next-century-btn,
+::ng-deep .ant-calendar-month-panel-header .ant-calendar-month-panel-prev-decade-btn,
+::ng-deep .ant-calendar-month-panel-header .ant-calendar-month-panel-next-decade-btn,
+::ng-deep .ant-calendar-month-panel-header .ant-calendar-month-panel-prev-month-btn,
+::ng-deep .ant-calendar-month-panel-header .ant-calendar-month-panel-next-month-btn,
+::ng-deep .ant-calendar-month-panel-header .ant-calendar-month-panel-prev-year-btn,
+::ng-deep .ant-calendar-month-panel-header .ant-calendar-month-panel-next-year-btn {
+  position: absolute;
+  top: 0;
+  display: inline-block;
+  padding: 0 5px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  font-family: Arial, 'Hiragino Sans GB', 'Microsoft Yahei', 'Microsoft Sans Serif', sans-serif;
+  line-height: 40px;
+}
+
+::ng-deep .ant-calendar-year-panel-last-decade-cell .ant-calendar-year-panel-year {
+  color: rgba(255, 255, 255, 0.3);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+::ng-deep .ant-calendar-year-panel-next-decade-cell .ant-calendar-year-panel-year {
+  color: rgba(255, 255, 255, 0.3);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+::ng-deep .ant-calendar-year-panel-header,
+::ng-deep .ant-calendar-month-panel-header {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-bottom: 1px solid #16283F;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  .ant-calendar-year-panel-decade-select-content {
+    display: inline-block;
+    padding: 0 2px;
+    color: rgba(255, 255, 255, 1);
+    font-weight: 500;
+    line-height: 40px;
+    font: {
+      family: 'xiaomi';
+      -webkit-font-smoothing: subpixel-antialiased;
+      size: 17px;
+    };
+  }
+
+  .ant-calendar-year-panel-prev-decade-btn {
+    position: absolute;
+    top: 0;
+    display: inline-block;
+    padding: 0 5px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    font-family: Arial, 'Hiragino Sans GB', 'Microsoft Yahei', 'Microsoft Sans Serif', sans-serif;
+    line-height: 40px;
+  }
+
+  .ant-calendar-year-panel-next-decade-btn {
+    position: absolute;
+    top: 0;
+    display: inline-block;
+    padding: 0 5px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    font-family: Arial, 'Hiragino Sans GB', 'Microsoft Yahei', 'Microsoft Sans Serif', sans-serif;
+    line-height: 40px;
+  }
+}
+
+
+::ng-deep .ant-calendar-decade-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  background: #16283F;
+  border-radius: 4px;
+  outline: none;
+  color: white;
+}
+
+::ng-deep .ant-calendar-decade-panel-decade {
+  display: inline-block;
+  height: 24px;
+  margin: 0 auto;
+  padding: 0 6px;
+  color: rgba(255, 255, 255, 1);
+  line-height: 24px;
+  text-align: center;
+  background: transparent;
+  border-radius: 2px;
+  transition: background 0.3s ease;
+}
+
+::ng-deep .ant-calendar-decade-panel-last-century-cell .ant-calendar-decade-panel-decade {
+  color: rgba(255, 255, 255, 0.3);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+::ng-deep .ant-calendar-decade-panel-next-century-cell .ant-calendar-decade-panel-decade {
+  color: rgba(255, 255, 255, 0.3);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+::ng-deep .ant-calendar-decade-panel-header {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-bottom: 1px solid #16283F;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  .ant-calendar-decade-panel-prev-century-btn {
+    position: absolute;
+    top: 0;
+    display: inline-block;
+    padding: 0 5px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    font-family: Arial, 'Hiragino Sans GB', 'Microsoft Yahei', 'Microsoft Sans Serif', sans-serif;
+    line-height: 40px;
+  }
+
+  .ant-calendar-decade-panel-next-century-btn {
+    position: absolute;
+    top: 0;
+    display: inline-block;
+    padding: 0 5px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    font-family: Arial, 'Hiragino Sans GB', 'Microsoft Yahei', 'Microsoft Sans Serif', sans-serif;
+    line-height: 40px;
+  }
+}

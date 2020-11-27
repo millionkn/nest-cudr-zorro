@@ -1,0 +1,289 @@
+<div class="background">
+  <div class="scheduling-bg">
+    <div class="lineState" [ngStyle]="{'top':'520px','left':'0px'}">
+      <div class="icon"></div>
+      <div class="name">375V直流用户负荷</div>
+      <div class="value">{{ZL375}} kW</div>
+    </div>
+
+    <div class="lineState" [ngStyle]="{'top':'550px','left':'0px'}">
+      <div class="icon"></div>
+      <div class="name">375V母线电压</div>
+      <div class="value" style="margin-left: 35px">{{MX375}} V</div>
+    </div>
+
+    <div class="lineState" [ngStyle]="{'top':'665px','left':'620px'}">
+      <div class="icon"></div>
+      <div class="name">开关状态</div>
+      <div class="value">{{KG48==0?'关闭':'打开'}} </div>
+    </div>
+
+
+    <div class="lineState" [ngStyle]="{'top':'755px','left':'520px'}">
+      <div class="icon"></div>
+      <div class="name">48V直流用户负荷</div>
+      <div class="value">{{ZL48}} kW</div>
+    </div>
+
+    <div class="lineState" [ngStyle]="{'top':'665px','left':'820px'}">
+      <div class="icon"></div>
+      <div class="name">48V母线电压</div>
+      <div class="value">{{MX48}} V</div>
+    </div>
+
+    <div class="lineState" [ngStyle]="{'top':'445px','left':'110px'}">
+      <div class="icon"></div>
+      <div class="name">状态</div>
+      <div class="value">{{NBQ_State1==0?'关闭':'打开'}} </div>
+    </div>
+    <div class="lineState" [ngStyle]="{'top':'470px','left':'110px'}">
+      <div class="icon"></div>
+      <div class="name">电压</div>
+      <div class="value">{{BLQ1_DY}} </div>
+    </div>
+    <div class="lineState" [ngStyle]="{'top':'495px','left':'110px'}">
+      <div class="icon"></div>
+      <div class="name">电流</div>
+      <div class="value">{{BLQ1_DL}} </div>
+    </div>
+    <div class="lineState" [ngStyle]="{'top':'525px','left':'110px'}">
+      <div class="icon"></div>
+      <div class="name">功率</div>
+      <div class="value">{{BLQ1_GL}} </div>
+    </div>
+
+    <div class="lineState" [ngStyle]="{'top':'445px','left':'560px'}">
+      <div class="icon"></div>
+      <div class="name">状态</div>
+      <div class="value">{{NBQ_State2==0?'关闭':'打开'}} </div>
+    </div>
+    <div class="lineState" [ngStyle]="{'top':'470px','left':'560px'}">
+      <div class="icon"></div>
+      <div class="name">电压</div>
+      <div class="value">{{BLQ2_DY}} </div>
+    </div>
+    <div class="lineState" [ngStyle]="{'top':'495px','left':'560px'}">
+      <div class="icon"></div>
+      <div class="name">电流</div>
+      <div class="value">{{BLQ2_DL}} </div>
+    </div>
+    <div class="lineState" [ngStyle]="{'top':'525px','left':'560px'}">
+      <div class="icon"></div>
+      <div class="name">功率</div>
+      <div class="value">{{BLQ2_GL}} </div>
+    </div>
+
+
+
+
+    <div class="lineState" [ngStyle]="{'top':'445px','right':'-140px'}">
+      <div class="icon"></div>
+      <div class="name">状态</div>
+      <div class="value">{{NBQ_State3==0?'关闭':'打开'}} </div>
+    </div>
+    <div class="lineState" [ngStyle]="{'top':'470px','right':'-140px'}">
+      <div class="icon"></div>
+      <div class="name">电压</div>
+      <div class="value">{{BLQ3_DY}} </div>
+    </div>
+    <div class="lineState" [ngStyle]="{'top':'495px','right':'-140px'}">
+      <div class="icon"></div>
+      <div class="name">电流</div>
+      <div class="value">{{BLQ3_DL}} </div>
+    </div>
+    <div class="lineState" [ngStyle]="{'top':'525px','right':'-140px'}">
+      <div class="icon"></div>
+      <div class="name">功率</div>
+      <div class="value">{{BLQ3_GL}} </div>
+    </div>
+
+
+
+
+    <div class="lineState" [ngStyle]="{'top':'565px','left':'380px'}">
+      <div class="icon"></div>
+      <div class="name">状态</div>
+      <div class="value">{{NBQ_State4==0?'关闭':'打开'}} </div>
+    </div>
+    <div class="lineState" [ngStyle]="{'top':'590px','left':'380px'}">
+      <div class="icon"></div>
+      <div class="name">电压</div>
+      <div class="value">{{BLQ4_DY}} </div>
+    </div>
+    <div class="lineState" [ngStyle]="{'top':'615px','left':'380px'}">
+      <div class="icon"></div>
+      <div class="name">电流</div>
+      <div class="value">{{BLQ4_DL}} </div>
+    </div>
+    <div class="lineState" [ngStyle]="{'top':'640px','left':'380px'}">
+      <div class="icon"></div>
+      <div class="name">功率</div>
+      <div class="value">{{BLQ4_GL}} </div>
+    </div>
+
+
+
+
+    <div class="lineState" [ngStyle]="{'top':'565px','left':'930px'}">
+      <div class="icon"></div>
+      <div class="name">状态</div>
+      <div class="value">{{NBQ_State5==0?'关闭':'打开'}} </div>
+    </div>
+    <div class="lineState" [ngStyle]="{'top':'590px','left':'930px'}">
+      <div class="icon"></div>
+      <div class="name">电压</div>
+      <div class="value">{{BLQ5_DY}} </div>
+    </div>
+    <div class="lineState" [ngStyle]="{'top':'615px','left':'930px'}">
+      <div class="icon"></div>
+      <div class="name">电流</div>
+      <div class="value">{{BLQ5_GL}} </div>
+    </div>
+    <div class="lineState" [ngStyle]="{'top':'640px','left':'930px'}">
+      <div class="icon"></div>
+      <div class="name">功率</div>
+      <div class="value">{{BLQ5_GL}} </div>
+    </div>
+
+
+    <div class="lineState" [ngStyle]="{'top':'565px','right':'-230px'}">
+      <div class="icon"></div>
+      <div class="name">状态</div>
+      <div class="value">{{NBQ_State6==0?'关闭':'打开'}} </div>
+    </div>
+    <div class="lineState" [ngStyle]="{'top':'590px','right':'-230px'}">
+      <div class="icon"></div>
+      <div class="name">电压</div>
+      <div class="value">{{BLQ6_DY}} </div>
+    </div>
+    <div class="lineState" [ngStyle]="{'top':'615px','right':'-230px'}">
+      <div class="icon"></div>
+      <div class="name">电流</div>
+      <div class="value">{{BLQ6_DL}} </div>
+    </div>
+    <div class="lineState" [ngStyle]="{'top':'640px','right':'-230px'}">
+      <div class="icon"></div>
+      <div class="name">功率</div>
+      <div class="value">{{BLQ6_GL}} </div>
+    </div>
+
+
+
+    <div class="lineState" [ngStyle]="{'top':'300px','right':'-150px'}">
+      <div class="icon"></div>
+      <div class="name">电压</div>
+      <div class="value">{{DY220}} V</div>
+    </div>
+
+    <div class="lineState" [ngStyle]="{'top':'325px','right':'-150px'}">
+      <div class="icon"></div>
+      <div class="name">电流</div>
+      <div class="value">{{DL220}} A</div>
+    </div>
+
+    <div class="lineState" [ngStyle]="{'top':'350px','right':'-150px'}">
+      <div class="icon"></div>
+      <div class="name">功率</div>
+      <div class="value">{{GL220}} W</div>
+    </div>
+
+    <div class="lineState" [ngStyle]="{'top':'375px','right':'-150px'}">
+      <div class="icon"></div>
+      <div class="name">频率</div>
+      <div class="value">{{PL220}} Hz</div>
+    </div>
+
+    <div class="lineState" [ngStyle]="{'top':'310px','left':'770px','width':'400px'}">
+      <div class="icon"></div>
+      <div class="name">电流</div>
+      <div class="name">A相</div>
+      <div class="value">{{GDL_A}} A</div>
+      <div class="name">B相</div>
+      <div class="value">{{GDL_B}} A</div>
+      <div class="name">C相</div>
+      <div class="value">{{GDL_C}} A</div>
+    </div>
+
+    <div class="lineState" [ngStyle]="{'top':'335px','left':'770px','width':'400px'}">
+      <div class="icon"></div>
+      <div class="name">电压</div>
+      <div class="name">A相</div>
+      <div class="value">{{GDY_A}} V</div>
+      <div class="name">B相</div>
+      <div class="value">{{GDY_B}} V</div>
+      <div class="name">C相</div>
+      <div class="value">{{GDY_C}} V</div>
+    </div>
+
+    <div class="lineState" [ngStyle]="{'top':'360px','left':'770px','width':'400px'}">
+      <div class="icon"></div>
+      <div class="name">功率</div>
+      <div class="name">A相</div>
+      <div class="value">{{GGL_A}} W</div>
+      <div class="name">B相</div>
+      <div class="value">{{GGL_B}} W</div>
+      <div class="name">C相</div>
+      <div class="value">{{GGL_C}} W</div>
+    </div>
+
+    <div class="lineState" [ngStyle]="{'top':'385px','left':'770px','width':'400px'}">
+      <div class="icon"></div>
+      <div class="name">总功率</div>
+      <div class="value" style="margin-left: 20px">{{GTotal_GL}} W</div>
+    </div>
+
+
+
+
+
+    <div class="lineState" [ngStyle]="{'top':'40px','left':'870px','width':'400px'}">
+      <div class="icon"></div>
+      <div class="name">电流</div>
+      <div class="name">A相</div>
+      <div class="value">{{UDL_A}} A</div>
+      <div class="name">B相</div>
+      <div class="value">{{UDL_B}} A</div>
+      <div class="name">C相</div>
+      <div class="value">{{UDL_C}} A</div>
+    </div>
+
+    <div class="lineState" [ngStyle]="{'top':'65px','left':'870px','width':'400px'}">
+      <div class="icon"></div>
+      <div class="name">电压</div>
+      <div class="name">A相</div>
+      <div class="value">{{UDY_A}} V</div>
+      <div class="name">B相</div>
+      <div class="value">{{UDY_B}} V</div>
+      <div class="name">C相</div>
+      <div class="value">{{UDY_C}} V</div>
+    </div>
+
+    <div class="lineState" [ngStyle]="{'top':'90px','left':'870px','width':'400px'}">
+      <div class="icon"></div>
+      <div class="name">功率</div>
+      <div class="name">A相</div>
+      <div class="value">{{UGL_A}} W</div>
+      <div class="name">B相</div>
+      <div class="value">{{UGL_B}} W</div>
+      <div class="name">C相</div>
+      <div class="value">{{UGL_C}} W</div>
+    </div>
+
+    <div class="lineState" [ngStyle]="{'top':'115px','left':'870px','width':'400px'}">
+      <div class="icon"></div>
+      <div class="name">频率</div>
+      <div class="name">A相</div>
+      <div class="value">{{UPL_A}} Hz</div>
+      <div class="name">B相</div>
+      <div class="value">{{UPL_B}} Hz</div>
+      <div class="name">C相</div>
+      <div class="value">{{UPL_C}} Hz</div>
+    </div>
+
+    <div class="lineState" [ngStyle]="{'top':'140px','left':'870px','width':'400px','margin-left':'20px'}">
+      <div class="icon"></div>
+      <div class="name">总功率</div>
+      <div class="value">{{UGL_TOTal}} kW</div>
+    </div>
+  </div>
+</div>

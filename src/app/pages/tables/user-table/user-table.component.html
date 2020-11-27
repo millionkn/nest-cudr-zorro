@@ -1,42 +1,64 @@
-<nz-layout class="tablePage">
+<nz-layout class="app-layout">
   <nz-header>
-    <div class="filter">
-      <span>名字</span>
-      <div>
-        <input nz-input placeholder="" [(ngModel)]="name" />
+    <div class="app-header">
+      <div class="header-logo">
+        <a href="https://ng.ant.design/" target="_blank">
+          <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+          <h1>nest-cudr-zorro</h1>
+        </a>
       </div>
     </div>
-    <div class="right">
-      <button nz-button nzType="primary" style="margin-left: 10px;float:right" (click)="binder.editHandler()">
-        <i nz-icon nzType="plus" nzTheme="outline"></i> 添加
-      </button>
-    </div>
   </nz-header>
-  <nz-content>
-    <nz-table #table nzShowSizeChanger [nzFrontPagination]="false" 
-    [nzData]="binder.data$ | async"
-      (nzPageSizeChange)="binder.pageSizeChangeHandler($event)" 
-      [nzTotal]="binder.total$ | async"
-      (nzPageIndexChange)="binder.pageIndexChangeHandler($event)" 
-      [nzLoading]="binder.loading$ | async">
-      <thead>
-        <tr>
-          <th nzWidth="100px">序号</th>
-          <th>名称</th>
-          <th nzWidth="140px" nzRight="0px" nzAlign="center">操作</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let data of table.data; let index = index">
-          <td>{{index + 1}}</td>
-          <td>{{data.name}}</td>
-          <td nzAlign="center">
-            <a (click)="binder.editHandler(data)">编辑</a>
-            <nz-divider nzType="vertical"></nz-divider>
-            <a (click)="binder.deleteHandler(data)">删除</a>
-          </td>
-        </tr>
-      </tbody>
-    </nz-table>
-  </nz-content>
+  <nz-layout>
+    <nz-sider class="menu-sidebar"
+              nzCollapsible
+              nzWidth="225px"
+              nzBreakpoint="md"
+              [(nzCollapsed)]="isCollapsed"
+              [nzTrigger]="null">
+      <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+        <li nz-submenu [nzOpen]="openIndex === 1" (nzOpenChange)="openIndex = 1" nzTitle="首页" nzIcon="tool">
+          <ul>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="/首页/首页">首页</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <span class="sidebar-trigger" (click)="isCollapsed = !isCollapsed">
+        <i class="trigger"
+           nz-icon
+           [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        ></i>
+      </span>
+    </nz-sider>
+    <nz-content>
+      <div class="inner-content">
+        <nz-layout class="tablePage">
+          <nz-header>
+          </nz-header>
+          <nz-content>
+            <nz-table #table nzShowSizeChanger [nzFrontPagination]="true" [nzData]="data" [nzTotal]="data.length">
+              <thead>
+                <tr>
+                  <th nzWidth="100px">序号</th>
+                  <th>编号</th>
+                  <th nzWidth="140px" nzRight="0px" nzAlign="center">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of table.data; let index = index">
+                  <td>{{index + 1}}</td>
+                  <td>{{item.mid}}</td>
+                  <td nzAlign="center">
+                    <a (click)="show(item)">查看</a>
+                  </td>
+                </tr>
+              </tbody>
+            </nz-table>
+          </nz-content>
+        </nz-layout>
+      </div>
+    </nz-content>
+  </nz-layout>
 </nz-layout>
