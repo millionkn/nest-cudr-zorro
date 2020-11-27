@@ -1,6 +1,15 @@
 @import "./globle";
 @import "./datepicker";
 
+.back-arrow {
+  color: white;
+  position: absolute;
+  font-size: 1.6rem;
+  top: 10px !important;
+  left: 40px;
+  cursor:pointer;
+}
+
 .infoContainer {
   // pointer-events: none;
 
@@ -444,9 +453,9 @@
 
 }
 
-.background{
-  width:100vw;
-  height:100vh;
+.background {
+  width: 100vw;
+  height: 100vh;
   background-color: black;
 }
 

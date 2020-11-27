@@ -5,6 +5,7 @@ import { MqttService } from './mqtt.service';
 import { serverConfig } from './serverCnfg';
 import { DevicesStateService } from './devices-state.service';
 import * as _ from 'lodash';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-building-view',
@@ -16,6 +17,7 @@ export class BuildingViewComponent implements OnInit, OnDestroy {
     private router: ActivatedRoute,
     private mqttServ: MqttService,
     public deviceService: DevicesStateService,
+    private location: Location,
   ) {
   }
 
@@ -271,4 +273,7 @@ export class BuildingViewComponent implements OnInit, OnDestroy {
     { id: '4', name: '04组储能', state: '', color: 'blue' }
   ];
 
+  goBack(){
+    this.location.back();
+  }
 }
