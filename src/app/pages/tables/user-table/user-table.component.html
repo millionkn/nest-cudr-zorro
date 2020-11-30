@@ -1,64 +1,24 @@
-<nz-layout class="app-layout">
+<nz-layout class="tablePage">
   <nz-header>
-    <div class="app-header">
-      <div class="header-logo">
-        <a href="https://ng.ant.design/" target="_blank">
-          <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
-          <h1>nest-cudr-zorro</h1>
-        </a>
-      </div>
-    </div>
   </nz-header>
-  <nz-layout>
-    <nz-sider class="menu-sidebar"
-              nzCollapsible
-              nzWidth="225px"
-              nzBreakpoint="md"
-              [(nzCollapsed)]="isCollapsed"
-              [nzTrigger]="null">
-      <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-        <li nz-submenu [nzOpen]="openIndex === 1" (nzOpenChange)="openIndex = 1" nzTitle="首页" nzIcon="tool">
-          <ul>
-            <li nz-menu-item nzMatchRouter>
-              <a routerLink="/首页/首页">首页</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-      <span class="sidebar-trigger" (click)="isCollapsed = !isCollapsed">
-        <i class="trigger"
-           nz-icon
-           [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-        ></i>
-      </span>
-    </nz-sider>
-    <nz-content>
-      <div class="inner-content">
-        <nz-layout class="tablePage">
-          <nz-header>
-          </nz-header>
-          <nz-content>
-            <nz-table #table nzShowSizeChanger [nzFrontPagination]="true" [nzData]="data" [nzTotal]="data.length">
-              <thead>
-                <tr>
-                  <th nzWidth="100px">序号</th>
-                  <th>编号</th>
-                  <th nzWidth="140px" nzRight="0px" nzAlign="center">操作</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of table.data; let index = index">
-                  <td>{{index + 1}}</td>
-                  <td>{{item.mid}}</td>
-                  <td nzAlign="center">
-                    <a (click)="show(item)">查看</a>
-                  </td>
-                </tr>
-              </tbody>
-            </nz-table>
-          </nz-content>
-        </nz-layout>
-      </div>
-    </nz-content>
-  </nz-layout>
+  <nz-content>
+    <nz-table #table nzShowSizeChanger [nzFrontPagination]="true" [nzData]="data" [nzTotal]="data.length">
+      <thead>
+        <tr>
+          <th nzWidth="100px">序号</th>
+          <th>编号</th>
+          <th nzWidth="140px" nzRight="0px" nzAlign="center">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of table.data; let index = index">
+          <td>{{index + 1}}</td>
+          <td>{{item.mid}}</td>
+          <td nzAlign="center">
+            <a (click)="show(item)">查看</a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </nz-content>
 </nz-layout>

@@ -4,8 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IconsProviderModule } from './icons-provider.module';
-import { NZ_I18N, zh_CN, NzLayoutModule, NzMenuModule, NzIconModule } from 'ng-zorro-antd';
-import { FormsModule } from '@angular/forms';
+import { NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
@@ -21,10 +20,6 @@ registerLocaleData(zh);
     BrowserModule,
     AppRoutingModule,
     IconsProviderModule,
-    NzLayoutModule,
-    NzMenuModule,
-    NzIconModule,
-    FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
   ],

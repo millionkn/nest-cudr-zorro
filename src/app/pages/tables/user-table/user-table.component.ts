@@ -9,8 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-table.component.scss']
 })
 export class UserTableComponent implements OnInit {
-  isCollapsed = false;
-  openIndex = 1;
   constructor(
     @Inject(Router) private router: Router,
   ) { }
@@ -22,6 +20,6 @@ export class UserTableComponent implements OnInit {
     id: string;
     mid: string;
   }) {
-    this.router.navigate([`/首页/building-view`], { queryParams: { modelId: item.id } })
+    this.router.navigate([`/tables/building-view`], { queryParams: { modelId: item.id } })
   }
 }
