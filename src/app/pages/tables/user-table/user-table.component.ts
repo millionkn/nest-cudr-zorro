@@ -14,12 +14,18 @@ export class UserTableComponent implements OnInit {
   ) { }
   data = modelConfig;
   async ngOnInit() {
-    console.log(this.data)
   }
   show(item: {
     id: string;
     mid: string;
   }) {
-    this.router.navigate([`/tables/building-view`], { queryParams: { modelId: item.id } })
+    this.router.navigate([`/tables/building-view`], { queryParams: { modelId: item.id } });
   }
+  showLogs(item: {
+    id: string;
+    mid: string;
+  }) {
+    this.router.navigate([`/tables/logs`], { queryParams: { modelId: item.id } });
+  }
+  
 }

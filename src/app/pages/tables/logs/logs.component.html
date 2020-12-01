@@ -1,0 +1,11 @@
+<div class="back-arrow block" (click)="goBack()" href="#">
+  <i nz-icon nzType="left" nzTheme="outline"></i>
+  <span>返回</span>
+</div>
+
+<nz-card nzTitle="日志">
+  <div class="block info" *ngFor="let log of logs">
+    <span>{{log.time}}</span>
+    <div class="data">{{log.data}}</div>
+  </div>
+</nz-card>

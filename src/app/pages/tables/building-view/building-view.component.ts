@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, } from '@angular/router';
-import { MqttService } from './mqtt.service';
-import { serverConfig } from './serverCnfg';
-import { DevicesStateService } from './devices-state.service';
+import { MqttService } from '../../mqtt.service';
+import { serverConfig } from '../../serverCnfg';
+import { DevicesStateService } from '../../devices-state.service';
 import { Location } from '@angular/common';
+import * as dayjs from 'dayjs';
 
 const items = [
   {
@@ -35,7 +36,9 @@ const items = [
     child: [
       { register: '63', name: '375V母线电压', dw: 'V' },
       { register: '64', name: '64V母线电压', dw: 'V' },
+      { register: '116', name: '375V开关', render: (r: number) => r === 0 ? '关闭' : '开启' },
       { register: '65', name: '375V直流用户负荷', dw: 'W' },
+      { register: '117', name: '48V开关', render: (r: number) => r === 0 ? '关闭' : '开启' },
       { register: '66', name: '48V直流用户负荷', dw: 'W' },
     ],
   },
@@ -87,21 +90,27 @@ const items = [
   {
     title: '变流器',
     child: [
+      { register: '109', name: '1号变流器开关', render: (r: number) => r === 0 ? '关闭' : '开启' },
       { register: '45', name: '1号变流器电压', dw: 'V' },
       { register: '46', name: '1号变流器电流', dw: 'A' },
       { register: '47', name: '1号变流器当前功率', dw: 'W' },
+      { register: '110', name: '2号变流器开关', render: (r: number) => r === 0 ? '关闭' : '开启' },
       { register: '48', name: '2号变流器电压', dw: 'V' },
       { register: '49', name: '2号变流器电流', dw: 'A' },
       { register: '50', name: '2号变流器当前功率', dw: 'W' },
+      { register: '111', name: '3号变流器开关', render: (r: number) => r === 0 ? '关闭' : '开启' },
       { register: '51', name: '3号变流器电压', dw: 'V' },
       { register: '52', name: '3号变流器电流', dw: 'A' },
       { register: '53', name: '3号变流器当前功率', dw: 'W' },
+      { register: '112', name: '4号变流器开关', render: (r: number) => r === 0 ? '关闭' : '开启' },
       { register: '54', name: '4号变流器电压', dw: 'V' },
       { register: '55', name: '4号变流器电流', dw: 'A' },
       { register: '56', name: '4号变流器当前功率', dw: 'W' },
+      { register: '113', name: '5号变流器开关', render: (r: number) => r === 0 ? '关闭' : '开启' },
       { register: '57', name: '5号变流器电压', dw: 'V' },
       { register: '58', name: '5号变流器电流', dw: 'A' },
       { register: '59', name: '5号变流器当前功率', dw: 'W' },
+      { register: '114', name: '6号变流器开关', render: (r: number) => r === 0 ? '关闭' : '开启' },
       { register: '60', name: '6号变流器电压', dw: 'V' },
       { register: '61', name: '6号变流器电流', dw: 'A' },
       { register: '62', name: '6号变流器当前功率', dw: 'W' },
@@ -122,6 +131,10 @@ export class BuildingViewComponent implements OnInit, OnDestroy {
     private location: Location,
   ) {
   }
+  sellValue = 0;
+  buyValue = 0;
+  buyDate = new Date();
+  sellDate = new Date();
   items = items;
   currentItem: any = {};
   private cbs = new Array<() => void>();
@@ -129,6 +142,7 @@ export class BuildingViewComponent implements OnInit, OnDestroy {
     this.mqttServ.loadData('1', serverConfig.mqttTopic);
     const subscription = this.mqttServ.ReceiveData.subscribe((msg) => {
       const payload = JSON.parse(msg.payload);
+      console.log(payload);
       if (payload.data && payload.data.length < 1) {
         return;
       }
@@ -142,12 +156,8 @@ export class BuildingViewComponent implements OnInit, OnDestroy {
   group(input: any[]) {
     return new Array(Math.ceil(input.length / 4)).fill(0).map((o, i) => input.slice(i * 4, i * 4 + 4));
   }
-  cover(register: string | [string, string]) {
-    if (typeof register === 'string') {
-      return this.currentItem[register] || '--';
-    } else {
-
-    }
+  cover(register: string) {
+    return register in this.currentItem ? this.currentItem[register] : '--';
   }
   selectId = '';
 
@@ -157,5 +167,25 @@ export class BuildingViewComponent implements OnInit, OnDestroy {
   }
   goBack() {
     this.location.back();
+  }
+  buyHandler() {
+    this.mqttServ.send({
+      date: dayjs().format('YYYY-MM-DD HH:mm:ss'), data: [{
+        type: 1,
+        id: Number(this.router.snapshot.queryParams.modelId),
+        power: this.buyValue,
+        time: dayjs(this.buyDate).format('HH:mm:ss'),
+      }]
+    });
+  }
+  sellHandler() {
+    this.mqttServ.send({
+      date: dayjs().format('YYYY-MM-DD HH:mm:ss'), data: [{
+        type: 2,
+        id: Number(this.router.snapshot.queryParams.modelId),
+        power: this.sellValue,
+        time: dayjs(this.sellDate).format('HH:mm:ss'),
+      }]
+    });
   }
 }

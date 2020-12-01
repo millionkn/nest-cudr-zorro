@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserTableComponent } from './user-table/user-table.component';
 import { BuildingViewComponent } from './building-view/building-view.component';
 import { TablesComponent } from './tables.component';
+import { LogsComponent } from './logs/logs.component';
 
 const routes: Routes = [
   {
@@ -10,7 +11,8 @@ const routes: Routes = [
     component: TablesComponent,
     children: [
       { path: 'users', component: UserTableComponent },
-      { path: 'building-view', component: BuildingViewComponent, }
+      { path: 'building-view', component: BuildingViewComponent },
+      { path: 'logs', component: LogsComponent }
     ],
   },
 ];

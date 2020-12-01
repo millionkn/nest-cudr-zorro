@@ -6,7 +6,19 @@
 <nz-card *ngFor="let item of items" [nzTitle]="item.title" class="block">
   <nz-row class="info" *ngFor="let items of group(item.child)">
     <nz-col nzSpan="6" *ngFor="let item of items">
-      <span class="label">{{item.name}}:</span>{{ cover(item.register) }}{{item.dw}}
+      <span
+        class="label">{{item.name}}:</span>{{ item.render ? item.render(cover(item.register)) : cover(item.register) + item.dw }}
     </nz-col>
   </nz-row>
+</nz-card>
+
+<nz-card nzTitle="售电" class="block">
+  <input nz-input [(ngModel)]="sellValue" style="width:240px" />
+  <nz-time-picker [(ngModel)]="sellDate"></nz-time-picker>
+  <button nz-button (click)="sellHandler()">售出</button>
+</nz-card>
+<nz-card nzTitle="购电" class="block">
+  <input nz-input [(ngModel)]="buyValue" style="width:240px" />
+  <nz-time-picker [(ngModel)]="buyDate"></nz-time-picker>
+  <button nz-button (click)="buyHandler()">购买</button>
 </nz-card>

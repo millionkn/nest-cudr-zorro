@@ -10,7 +10,7 @@ import { Paho } from 'ng2-mqtt/mqttws31';
   providedIn: 'root'
 })
 export class MqttService {
-  private mqttClient: any;
+  private mqttClient!: Paho.MQTT.Client;
   private sid = ''; // station ID
   ReceiveData = new Subject<{
     dest: string,
@@ -73,7 +73,7 @@ export class MqttService {
     this.topic = topic || serverConfig.mqttTopic;
     const cacheFilter: string = this.topic.replace('{0}', sid);
     if (this.mqttClient.isConnected()) {
-      this.mqttClient.subscribe(cacheFilter, undefined);
+      this.mqttClient.subscribe(cacheFilter, {});
       console.log('mqtt 订阅成功.');
     }
   }
@@ -84,10 +84,16 @@ export class MqttService {
       sid = sid || this.sid;
       if (sid !== '') {
         const cachaFilter: string = this.topic.replace('{0}', sid);
-        this.mqttClient.unsubscribe(cachaFilter, undefined);
+        this.mqttClient.unsubscribe(cachaFilter, {});
         this.sid = '';
         console.log('mqtt 撤销成功.');
       }
     }
+  }
+  public send(body: object) {
+    const message = new Paho.MQTT.Message(JSON.stringify(body));
+    message.qos = 1;
+    message.destinationName = 'bkr/energyrouter/1/1.0.0/cmd';
+    this.mqttClient.send(message);
   }
 }
