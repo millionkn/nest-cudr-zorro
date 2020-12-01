@@ -170,7 +170,8 @@ export class BuildingViewComponent implements OnInit, OnDestroy {
   }
   buyHandler() {
     this.mqttServ.send({
-      date: dayjs().format('YYYY-MM-DD HH:mm:ss'), data: [{
+      date: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+      data: [{
         type: 1,
         id: Number(this.router.snapshot.queryParams.modelId),
         power: this.buyValue,
@@ -178,13 +179,47 @@ export class BuildingViewComponent implements OnInit, OnDestroy {
       }]
     });
   }
+  standby = 60;
+  mode = 10;
   sellHandler() {
     this.mqttServ.send({
-      date: dayjs().format('YYYY-MM-DD HH:mm:ss'), data: [{
+      date: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+      data: [{
         type: 2,
         id: Number(this.router.snapshot.queryParams.modelId),
         power: this.sellValue,
         time: dayjs(this.sellDate).format('HH:mm:ss'),
+      }]
+    });
+  }
+  resetDate = new Date();
+  resetDateHandler(date = dayjs().toDate()) {
+    this.mqttServ.send({
+      date: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+      data: [{
+        type: 3,
+        id: Number(this.router.snapshot.queryParams.modelId),
+        time: dayjs(date).format('YYYY-MM-DD HH:mm:ss'),
+      }]
+    });
+  }
+  resetCycleHandler() {
+    this.mqttServ.send({
+      date: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+      data: [{
+        type: 4,
+        id: Number(this.router.snapshot.queryParams.modelId),
+        standby: this.standby,
+        mode: this.mode,
+      }]
+    });
+  }
+  stopHandler() {
+    this.mqttServ.send({
+      date: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+      data: [{
+        type: 5,
+        id: Number(this.router.snapshot.queryParams.modelId),
       }]
     });
   }

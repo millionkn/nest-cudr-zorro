@@ -22,3 +22,25 @@
   <nz-time-picker [(ngModel)]="buyDate"></nz-time-picker>
   <button nz-button (click)="buyHandler()">购买</button>
 </nz-card>
+<nz-card nzTitle="上传周期" class="block">
+  <div>
+    工作时:<nz-input-number nzSize="default" [(ngModel)]="mode" [nzMin]="1" [nzStep]="1"></nz-input-number>秒
+  </div>
+  <div>
+    空闲时:<nz-input-number nzSize="default" [(ngModel)]="standby" [nzMin]="mode" [nzStep]="1"></nz-input-number>秒
+  </div>
+  
+  <button nz-button (click)="resetCycleHandler()">确认</button>
+</nz-card>
+<nz-card nzTitle="校时" class="block">
+  <div>
+    <button nz-button (click)="resetDateHandler()">矫正为当前时间</button>
+  </div>
+  <div>
+    <nz-date-picker [nzShowTime]="true" [(ngModel)]="resetDate"></nz-date-picker>
+    <button nz-button (click)="resetDateHandler(resetDate)">矫正</button>
+  </div>
+</nz-card>
+<nz-card nzTitle="终止交易" class="block">
+  <button nz-button (click)="stopHandler()">确认</button>
+</nz-card>

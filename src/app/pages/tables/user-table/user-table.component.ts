@@ -27,5 +27,4 @@ export class UserTableComponent implements OnInit {
   }) {
     this.router.navigate([`/tables/logs`], { queryParams: { modelId: item.id } });
   }
-  
 }
