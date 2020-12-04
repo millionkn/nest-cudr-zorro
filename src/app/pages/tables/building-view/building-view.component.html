@@ -3,7 +3,7 @@
   <span>返回</span>
 </div>
 
-<nz-card *ngFor="let item of items" [nzTitle]="item.title" class="block">
+<nz-card *ngFor="let item of items | async" [nzTitle]="item.title" class="block">
   <nz-row class="info" *ngFor="let items of group(item.child)">
     <nz-col nzSpan="6" *ngFor="let item of items">
       <span

@@ -22,18 +22,19 @@ export class LogsComponent implements OnInit, OnDestroy {
   logs: any[] = [];
   private cbs = new Array<() => void>();
   ngOnInit() {
-    this.mqttServ.loadData('1', serverConfig.mqttTopic);
+    this.mqttServ.loadData('1', 'bkr/energyrouter/1/1.0.0/frame');
     const subscription = this.mqttServ.ReceiveData.subscribe((msg) => {
       const payload = JSON.parse(msg.payload);
+      console.log(payload);
       if (payload.data && payload.data.length < 1) {
         return;
       }
       const modelId = this.router.snapshot.queryParams.modelId;
-      const item = (payload.data as any[]).find((x) => x.id === Number(modelId));
+      const item = (payload.data as any[]).find((x) => String(x.id) === String(modelId));
       if (item) {
-        this.logs.unshift({
+        this.logs.push({
           time: payload.time,
-          data: JSON.stringify(item),
+          data: item.frame,
         });
       }
     });

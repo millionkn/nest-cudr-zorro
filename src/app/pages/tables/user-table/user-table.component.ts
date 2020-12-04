@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { modelConfig } from '../../modelData';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -11,9 +13,13 @@ import { Router } from '@angular/router';
 export class UserTableComponent implements OnInit {
   constructor(
     @Inject(Router) private router: Router,
+    @Inject(HttpClient) private http: HttpClient,
   ) { }
-  data = modelConfig;
+  data = [];
   async ngOnInit() {
+    this.http.post<{ config: string }>(`http://120.53.18.141:3002/api/user-config`, {}).subscribe(({config})=>{
+      this.data = eval(config);
+    });
   }
   show(item: {
     id: string;
