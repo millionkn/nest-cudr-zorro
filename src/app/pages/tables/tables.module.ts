@@ -10,6 +10,7 @@ import { TablesComponent } from './tables.component';
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 import { LogsComponent } from './logs/logs.component';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
     LogsComponent,
   ],
   imports: [
+    NzMessageModule,
     NzDatePickerModule,
     NzInputNumberModule,
     NzTimePickerModule,

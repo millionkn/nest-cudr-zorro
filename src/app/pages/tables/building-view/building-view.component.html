@@ -3,6 +3,25 @@
   <span>返回</span>
 </div>
 
+<nz-card nzTitle="工作模式" class="block">
+  <nz-row class="info">
+    <nz-col nzSpan="24">
+      <span
+        class="label">工作模式:</span>{{
+          currentItem['101'] === 1 ? '模式状态1-光伏供直流负荷' :
+          currentItem['102'] === 1 ? '模式状态2-光伏存入储能' :
+          currentItem['103'] === 1 ? '模式状态3-光伏供家庭交流负荷' :
+          currentItem['104'] === 1 ? '模式状态4-光伏余量上网' :
+          currentItem['105'] === 1 ? '模式状态5-储能供用户交流负荷' :
+          currentItem['106'] === 1 ? '模式状态6-装置从电网买电存入储能' :
+          currentItem['107'] === 1 ? '模式状态7-P2P购电' :
+          currentItem['108'] === 1 ? '模式状态8-P2P售电' :
+          '待机'
+        }}
+    </nz-col>
+  </nz-row>
+</nz-card>
+
 <nz-card *ngFor="let item of items | async" [nzTitle]="item.title" class="block">
   <nz-row class="info" *ngFor="let items of group(item.child)">
     <nz-col nzSpan="6" *ngFor="let item of items">
@@ -24,12 +43,11 @@
 </nz-card>
 <nz-card nzTitle="上传周期" class="block">
   <div>
-    工作时:<nz-input-number nzSize="default" [(ngModel)]="mode" [nzMin]="1" [nzStep]="1"></nz-input-number>秒
+    工作时:<nz-input-number nzSize="default" [(ngModel)]="mode" [nzMin]="10" [nzStep]="1"></nz-input-number>秒
   </div>
   <div>
-    空闲时:<nz-input-number nzSize="default" [(ngModel)]="standby" [nzMin]="mode" [nzStep]="1"></nz-input-number>秒
+    空闲时:<nz-input-number nzSize="default" [(ngModel)]="standby" [nzMin]="mode" [nzMax]="2000" [nzStep]="1"></nz-input-number>秒
   </div>
-  
   <button nz-button (click)="resetCycleHandler()">确认</button>
 </nz-card>
 <nz-card nzTitle="校时" class="block">
@@ -43,4 +61,19 @@
 </nz-card>
 <nz-card nzTitle="终止交易" class="block">
   <button nz-button (click)="stopHandler()">确认</button>
+</nz-card>
+<nz-card nzTitle="设置阈值" class="block">
+  <div>
+    用户用电功率阈值:<nz-input-number nzSize="default" [(ngModel)]="userPower" [nzMin]="100" [nzMax]="6000" [nzStep]="1"></nz-input-number>W
+  </div>
+  <div>
+    电池下限:<nz-input-number nzSize="default" [(ngModel)]="batteryLow" [nzMin]="10" [nzMax]="2600" [nzStep]="1"></nz-input-number>WH
+  </div>
+  <div>
+    电池上限:<nz-input-number nzSize="default" [(ngModel)]="batteryHigh" [nzMin]="batteryLow" [nzMax]="2600" [nzStep]="1"></nz-input-number>WH
+  </div>
+  <div>
+    使用光伏功率阈值:<nz-input-number nzSize="default" [(ngModel)]="pvPower" [nzMin]="100" [nzMax]="3000" [nzStep]="1"></nz-input-number>W
+  </div>
+  <button nz-button (click)="setValueHandler()">确认</button>
 </nz-card>
