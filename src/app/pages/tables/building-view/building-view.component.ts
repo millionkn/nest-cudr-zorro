@@ -5,9 +5,126 @@ import { serverConfig } from '../../serverCnfg';
 import { DevicesStateService } from '../../devices-state.service';
 import { Location } from '@angular/common';
 import * as dayjs from 'dayjs';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { NzMessageService } from 'ng-zorro-antd';
+
+const items = [
+  {
+    title: '光伏',
+    child: [
+      { register: '1', name: '光伏总发电功率', dw: 'W' },
+      { register: '11', name: '用户光伏单相电表电压', dw: 'V' },
+      { register: '12', name: '用户光伏单相电表电流', dw: 'A' },
+      { register: '13', name: '用户光伏单相电表功率（±）', dw: 'W' },
+      { register: '14', name: '用户光伏单相电表电量', dw: 'KWH' },
+    ],
+  },
+  {
+    title: '电池',
+    child: [
+      { register: '5', name: '电池总容量', dw: 'AH' },
+      { register: '6', name: '电池当前剩余容量', dw: 'AH' },
+      { register: '4', name: '电池功率（±）', dw: 'W' },
+      { register: '2', name: '电池电压', dw: 'V' },
+      { register: '3', name: '电池电流（±）', dw: 'A' },
+      { register: '10', name: '电池SOC', dw: '%' },
+      { register: '9', name: '电池电量差', dw: 'WH' },
+      { register: '7', name: '电池总电量', dw: 'WH' },
+      { register: '8', name: '电池剩余电量', dw: 'WH' },
+    ],
+  },
+  {
+    title: '直流',
+    child: [
+      { register: '63', name: '375V母线电压', dw: 'V' },
+      { register: '64', name: '64V母线电压', dw: 'V' },
+      { register: '118', name: '375V开关', render: (r: number) => r === 1 ? '开启' : '关闭' },
+      { register: '65', name: '375V直流用户负荷', dw: 'W' },
+      { register: '119', name: '48V开关', render: (r: number) => r === 1 ? '开启' : '关闭' },
+      { register: '66', name: '48V直流用户负荷', dw: 'W' },
+    ],
+  },
+  {
+    title: '风电模块',
+    child: [
+      { register: '117', name: '开关状态-风电模块开关', render: (r: number) => r === 1 ? '开启' : '关闭' },
+    ],
+  },
+  {
+    title: '220V交流单相电表',
+    child: [
+      { register: '15', name: '220V交流单相电压', dw: 'V' },
+      { register: '16', name: '220V交流单相电流', dw: 'A' },
+      { register: '17', name: '220V交流单相功率(±）', dw: 'W' },
+      { register: '18', name: '220V交流单相频率', dw: 'HZ' },
+      { register: '19', name: '220V交流单相电量', dw: 'KWH' },
+    ],
+  },
+  {
+    title: '用户电表',
+    child: [
+      { register: '20', name: '用户电表A相电压', dw: 'V' },
+      { register: '21', name: '用户电表B相电压', dw: 'V' },
+      { register: '22', name: '用户电表C相电压', dw: 'V' },
+      { register: '23', name: '用户电表A相电流', dw: 'A' },
+      { register: '24', name: '用户电表B相电流', dw: 'A' },
+      { register: '25', name: '用户电表C相电流', dw: 'A' },
+      { register: '26', name: '用户电表当前功率（±）', dw: 'W' },
+      { register: '27', name: '用户表A相功率（±）', dw: 'W' },
+      { register: '28', name: '用户表B相功率（±）', dw: 'W' },
+      { register: '29', name: '用户表C相功率（±）', dw: 'W' },
+      { register: '30', name: '用户电表A相频率', dw: 'HZ' },
+      { register: '31', name: '用户电表B相频率', dw: 'HZ' },
+      { register: '32', name: '用户电表C相频率', dw: 'HZ' },
+      { register: '33', name: '用户电表电量', dw: 'KWH' },
+    ],
+  },
+  {
+    title: '购电电表',
+    child: [
+      { register: '34', name: '购电电表A相电压', dw: 'V' },
+      { register: '35', name: '购电电表B相电压', dw: 'V' },
+      { register: '36', name: '购电电表C相电压', dw: 'V' },
+      { register: '37', name: '购电电表A相电流', dw: 'A' },
+      { register: '38', name: '购电电表B相电流', dw: 'A' },
+      { register: '39', name: '购电电表C相电流', dw: 'A' },
+      { register: '40', name: '购电当前总功率（±）', dw: 'W' },
+      { register: '41', name: '购电A相功率（±）', dw: 'W' },
+      { register: '42', name: '购电B相功率（±）', dw: 'W' },
+      { register: '43', name: '购电C相功率（±）', dw: 'W' },
+      { register: '44', name: '购电电表电量', dw: 'KWH' },
+    ],
+  },
+  {
+    title: '变流器',
+    child: [
+      { register: '111', name: '1号变流器开关', render: (r: number) => r === 1 ? '开启' : '关闭' },
+      { register: '45', name: '1号变流器电压', dw: 'V' },
+      { register: '46', name: '1号变流器电流', dw: 'A' },
+      { register: '47', name: '1号变流器当前功率', dw: 'W' },
+      { register: '112', name: '2号变流器开关', render: (r: number) => r === 1 ? '开启' : '关闭' },
+      { register: '48', name: '2号变流器电压', dw: 'V' },
+      { register: '49', name: '2号变流器电流', dw: 'A' },
+      { register: '50', name: '2号变流器当前功率', dw: 'W' },
+      { register: '113', name: '3号变流器开关', render: (r: number) => r === 1 ? '开启' : '关闭' },
+      { register: '51', name: '3号变流器电压', dw: 'V' },
+      { register: '52', name: '3号变流器电流', dw: 'A' },
+      { register: '53', name: '3号变流器当前功率', dw: 'W' },
+      { register: '114', name: '4号变流器开关', render: (r: number) => r === 1 ? '开启' : '关闭' },
+      { register: '54', name: '4号变流器电压', dw: 'V' },
+      { register: '55', name: '4号变流器电流', dw: 'A' },
+      { register: '56', name: '4号变流器当前功率', dw: 'W' },
+      { register: '115', name: '5号变流器开关', render: (r: number) => r === 1 ? '开启' : '关闭' },
+      { register: '57', name: '5号变流器电压', dw: 'V' },
+      { register: '58', name: '5号变流器电流', dw: 'A' },
+      { register: '59', name: '5号变流器当前功率', dw: 'W' },
+      { register: '116', name: '6号变流器开关', render: (r: number) => r === 1 ? '开启' : '关闭' },
+      { register: '60', name: '6号变流器电压', dw: 'V' },
+      { register: '61', name: '6号变流器电流', dw: 'A' },
+      { register: '62', name: '6号变流器当前功率', dw: 'W' },
+    ]
+  },
+];
+
 
 @Component({
   selector: 'app-building-view',
@@ -20,7 +137,6 @@ export class BuildingViewComponent implements OnInit, OnDestroy {
     private mqttServ: MqttService,
     public deviceService: DevicesStateService,
     private location: Location,
-    private http: HttpClient,
     private message: NzMessageService,
   ) {
   }
@@ -28,7 +144,7 @@ export class BuildingViewComponent implements OnInit, OnDestroy {
   buyValue = 0;
   buyDate = new Date();
   sellDate = new Date();
-  items = this.http.post<{ config: string }>(`http://120.53.18.141:3002/api/building-view-config`, {}).pipe(map(({ config }) => eval(config)));
+  items = items;
   currentItem: any = {};
   private cbs = new Array<() => void>();
 
@@ -47,7 +163,7 @@ export class BuildingViewComponent implements OnInit, OnDestroy {
         if (type === 7) {
           this.message.error('查询设备参数失败');
         } else {
-          this.message.error('命令执行失败')
+          this.message.error('命令执行失败');
         }
       } else if (result === 1) {
         if (type === 7) {
@@ -65,20 +181,20 @@ export class BuildingViewComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
     this.mqttServ.loadData('1', serverConfig.mqttTopic);
-    setTimeout(()=>{
+    setTimeout(() => {
       this.mqttServ.loadData('1', 'bkr/energyrouter/{0}/1.0.0/cmd_ret');
       this.getState();
-    },4000);
+    }, 4000);
     const subscription = this.mqttServ.ReceiveData.subscribe((msg) => {
       const payload = JSON.parse(msg.payload);
 
       if (payload.data instanceof Array) {
         if (msg.dest === `bkr/energyrouter/1/1.0.0/rd`) {
-          this.resolveRd(payload.data)
+          this.resolveRd(payload.data);
         } else if (msg.dest === 'bkr/energyrouter/1/1.0.0/cmd_ret') {
-          this.resolveRet(payload.data)
-        }else{
-          console.log('base',msg)
+          this.resolveRet(payload.data);
+        } else {
+          console.log('base', msg);
         }
       }
     });
@@ -101,7 +217,7 @@ export class BuildingViewComponent implements OnInit, OnDestroy {
     this.location.back();
   }
   getState() {
-    console.log('getState')
+    console.log('getState');
     this.mqttServ.send({
       date: dayjs().format('YYYY-MM-DD HH:mm:ss'),
       data: [{
