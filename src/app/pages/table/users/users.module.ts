@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TablesRoutingModule } from './tables-routing.module';
-import { TablePageModule } from 'src/app/shareModules/table-page/table-page.module';
 import { UserTableComponent } from './user-table/user-table.component';
+import { TablePageModule } from 'src/app/shareModules/table-page/table-page.module';
+import { UsersRoutingModule } from './users-routing.module';
+
+
 
 @NgModule({
   declarations: [
@@ -10,8 +12,8 @@ import { UserTableComponent } from './user-table/user-table.component';
   ],
   imports: [
     TablePageModule,
-    TablesRoutingModule,
+    UsersRoutingModule,
     CommonModule
-  ],
+  ]
 })
-export class TablesModule { }
+export class UsersModule { }

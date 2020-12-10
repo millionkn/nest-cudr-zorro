@@ -20,11 +20,6 @@ registerLocaleData(zh);
   imports: [
     BrowserModule,
     AppRoutingModule,
-    IconsProviderModule,
-    NzLayoutModule,
-    NzMenuModule,
-    NzIconModule,
-    FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
   ],

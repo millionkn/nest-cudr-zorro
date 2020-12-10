@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserTableComponent } from './user-table/user-table.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '用户管理' },
   { path: '用户管理', component: UserTableComponent },
 ];
 
@@ -10,4 +11,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TablesRoutingModule { }
+export class UsersRoutingModule { }

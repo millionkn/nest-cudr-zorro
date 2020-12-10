@@ -1,5 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { LoginService } from './service/login.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +6,7 @@ import { LoginService } from './service/login.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  isCollapsed = false;
-  openIndex = 1;
   constructor(
-    @Inject(LoginService) private loginService: LoginService,
   ) { }
   async ngOnInit() {
   }
