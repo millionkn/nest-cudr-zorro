@@ -1,21 +1,20 @@
 import { Injectable, Inject } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { ID } from '../utils/entity';
-import { SocketService } from './socket.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private loginSubject = new ReplaySubject<{ id: ID }>(1);
   constructor(
-    @Inject(SocketService) private socketService: SocketService,
+    @Inject(HttpClient) private http: HttpClient,
   ) { }
-  login(username: string, password: string) {
-    return this.socketService.send<{ id: ID }>(`operatorLogin`, {
+  async login(username: string, password: string, base: 'biathlon' | 'skijump') {
+    await this.http.post(`api/auth/login`, {
       username,
       password,
-    }).subscribe(this.loginSubject);
+      base,
+    }).toPromise();
   }
-  readonly login$ = this.loginSubject.asObservable();
 }

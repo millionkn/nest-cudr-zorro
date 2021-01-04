@@ -1,0 +1,44 @@
+<div class="container">
+
+  <!-- 登录表单 -->
+  <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+    <div class="title">
+      <div style="font-size: 28px;font-weight: bold;letter-spacing: 2px;">冬奥重点运动员训练比赛及风环境管理大数据平台</div>
+    </div>
+    <div class="desc">
+
+    </div>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="请选择系统!">
+        <nz-radio-group formControlName="base">
+          <label nz-radio nzValue="skijump">滑雪成绩</label>
+          <label nz-radio nzValue="biathlon">冬季两项</label>
+        </nz-radio-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="请输入用户名或手机号!">
+        <nz-input-group nzPrefixIcon="user" style="font-size: 16px; color: #08c;">
+          <input class="inputValue" nz-input formControlName="userName" placeholder="用户名或手机号" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item style="margin-bottom: 0;">
+      <nz-form-control nzErrorTip="请输入密码!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input type="password" class="inputValue" nz-input formControlName="password" placeholder="密码" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <label nz-checkbox formControlName="remember">
+          <span>记住密码</span>
+        </label>
+      </nz-form-control>
+    </nz-form-item>
+    <button nz-button class="login-form-button" [nzType]="'primary'">登录</button>
+  </form>
+
+  <div style="position: absolute;bottom: 20px; right: 30px;">版本号:V1.00.00</div>
+</div>

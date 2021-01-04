@@ -1,0 +1,62 @@
+<nz-layout class="tablePage">
+  <nz-header>
+    <div class="filter">
+      <div>
+        <span>{{'赛场'| language | async}}</span>
+        <div>
+          <input nz-input placeholder="" [(ngModel)]="filed" />
+        </div>
+      </div>
+      <div>
+        <span>{{'编号'| language | async}}</span>
+        <div>
+          <input nz-input placeholder="" [(ngModel)]="identifity" />
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <button nz-button nzType="primary" (click)="searchEvent.next(null)">
+        <i nz-icon nzType="search"></i>{{'查询'| language | async}}
+      </button>
+      <button nz-button nzType="primary" (click)="reset()">
+        <i nz-icon nzType="undo"></i>{{'重置'| language | async}}
+      </button>
+      <button nz-button nzType="primary" style="margin-left: 10px;float:right" (click)="binder.editHandler()">
+        <i nz-icon nzType="plus" nzTheme="outline"></i> {{'添加'| language | async}}
+      </button>
+    </div>
+  </nz-header>
+  <nz-content>
+    <nz-table #table nzShowSizeChanger [nzFrontPagination]="false" 
+    [nzData]="binder.data$ | async"
+      (nzPageSizeChange)="binder.pageSizeChangeHandler($event)" 
+      [nzTotal]="binder.total$ | async"
+      (nzPageIndexChange)="binder.pageIndexChangeHandler($event)" 
+      [nzLoading]="binder.loading$ | async">
+      <thead>
+        <tr>
+          <th nzWidth="100px">{{'序号'| language | async}}</th>
+          <th>{{'赛场'| language | async}}</th>
+          <th>{{'编号'| language | async}}</th>
+          <th>{{'起点距离'| language | async}}</th>
+          <th>{{'离地高度'| language | async}}</th>
+          <th nzWidth="140px" nzRight="0px" nzAlign="center">{{'操作'| language | async}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of table.data; let index = index">
+          <td>{{index + 1}}</td>
+          <td>{{data['赛场']['名称']}}</td>
+          <td>{{data['编号']}}</td>
+          <td>{{data['起点距离']}}</td>
+          <td>{{data['离地高度']}}</td>
+          <td nzAlign="center">
+            <a (click)="binder.editHandler(data)">{{'编辑'| language | async}}</a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a (click)="binder.deleteHandler(data)">{{'删除'| language | async}}</a>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </nz-content>
+</nz-layout>

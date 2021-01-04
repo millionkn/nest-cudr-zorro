@@ -1,0 +1,36 @@
+<nz-table #table nzShowSizeChanger [nzFrontPagination]="false" [nzData]="binder.data$ | async"
+  (nzPageSizeChange)="binder.pageSizeChangeHandler($event)" [nzTotal]="binder.total$ | async"
+  (nzPageIndexChange)="binder.pageIndexChangeHandler($event)" [nzLoading]="binder.loading$ | async">
+  <thead>
+    <tr>
+      <th nzWidth="100px">{{'序号'| language | async}}</th>
+      <th>{{'运动员'| language | async}}</th>
+      <th>{{'赛场'| language | async}}</th>
+      <th>{{'时间'| language | async}}</th>
+      <th>{{'射击姿势'| language | async}}</th>
+      <th>{{'准心调教刻度'| language | async}}</th>
+      <th>{{'靶位'| language | async}}</th>
+      <th>{{'成绩'| language | async}}</th>
+      <th>{{'记录人'| language | async}}</th>
+      <th nzWidth="140px" nzRight="0px" nzAlign="center">{{'操作'| language | async}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of table.data; let index = index">
+      <td>{{index + 1}}</td>
+      <td>{{data['运动员']['姓名']}}</td>
+      <td>{{data['赛场']['名称']}}</td>
+      <td>{{data['时间']}}</td>
+      <td>{{data['射击姿势']}}</td>
+      <td>{{data['准心调教刻度']}}</td>
+      <td>{{data['靶位']}}</td>
+      <td>{{(data['成绩']?'命中':'未命中') | language | async}}</td>
+      <td>{{data['记录人']}}</td>
+      <td nzAlign="center">
+        <a (click)="binder.editHandler(data)">{{'编辑'| language | async}}</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a (click)="binder.deleteHandler(data)">{{'删除'| language | async}}</a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

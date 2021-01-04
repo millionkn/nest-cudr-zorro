@@ -1,71 +1,80 @@
 import { Component, OnInit, Inject, Injector } from '@angular/core';
-import { UserEntity, TGroupEntity } from 'src/app/entities';
+import { FieldEntity } from 'src/app/entities';
 import { ModalBinderFactoryService } from 'src/app/modal-editor/modal-binder-factory.service';
 import { EditorIs, EditorTitle } from 'src/app/modal-editor/decorators';
 import { StringEditorComponent } from 'src/app/modal-editor/editors/string-editor/string-editor.component';
-import { ItemEditorComponent } from 'src/app/modal-editor/editors/item-editor/item-editor.component';
 import { ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { QueryOption } from 'src/app/service/json-query.service';
 
-@EditorTitle('用户')
-class View extends UserEntity {
+@EditorTitle('场地信息')
+class View extends FieldEntity {
   @EditorIs({
-    label: '用户名',
+    label: '名称',
     component: () => StringEditorComponent,
     params: () => ({}),
   })
-  username!: string;
+  名称 = '';
   @EditorIs({
-    label: '姓名',
+    label: '国家',
     component: () => StringEditorComponent,
     params: () => ({}),
   })
-  name!: string;
+  国家 = '';
   @EditorIs({
-    label: '分组',
-    component: () => ItemEditorComponent,
-    params: () => ({
-      klass: () => TGroupEntity,
-      nameFun: (g: TGroupEntity) => g.name,
-      isMultiple: true,
-    })
+    label: '城市',
+    component: () => StringEditorComponent,
+    params: () => ({}),
   })
-  groups!: TGroupEntity[];
+  城市 = '';
+  @EditorIs({
+    label: '备注',
+    component: () => StringEditorComponent,
+    params: () => ({}),
+  })
+  备注 = '';
 }
 
 @Component({
-  selector: 'app-user-table',
-  templateUrl: './user-table.component.html',
-  styleUrls: ['./user-table.component.scss']
+  selector: 'app-field-table',
+  templateUrl: './field-table.component.html',
+  styleUrls: ['./field-table.component.scss']
 })
-export class UserTableComponent implements OnInit {
+export class FieldTableComponent implements OnInit {
+
+  searchEvent = new ReplaySubject<null>(1);
 
   name = '';
-  selectEvent = new ReplaySubject<null>(1);
+  city = '';
+  country = '';
 
   constructor(
     @Inject(Injector) private injector: Injector,
     @Inject(ModalBinderFactoryService) private factory: ModalBinderFactoryService,
   ) { }
-  binder = this.factory.create(View, this.injector, this.selectEvent.pipe(
+  binder = this.factory.create(View, this.injector, this.searchEvent.pipe(
     map(() => {
       const where: QueryOption<View> = {
-        name: {
-          '': {
-            like: this.name,
-          }
+        国家: {
+          '': { like: this.country },
         },
-        groups: {},
+        城市: {
+          '': { like: this.city }
+        },
+        名称: {
+          '': { like: this.name },
+        }
       };
       return where;
     })
   ));
   async ngOnInit() {
     this.reset();
-    this.selectEvent.next(null);
+    this.searchEvent.next(null);
   }
   reset() {
     this.name = '';
+    this.city = '';
+    this.country = '';
   }
 }

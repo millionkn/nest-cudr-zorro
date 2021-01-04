@@ -1,0 +1,47 @@
+<nz-layout class="tablePage">
+  <nz-header>
+    <div class="filter">
+      <div>
+        <span>{{'运动员姓名'| language | async}}</span>
+        <div>
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="targetSportsManId">
+            <nz-option *ngFor="let sportsMan of sportsManArray$|async" [nzValue]="sportsMan.id" [nzLabel]="sportsMan['姓名']">
+            </nz-option>
+          </nz-select>
+        </div>
+      </div>
+      <div>
+        <span>{{'时间'| language | async}}</span>
+        <div>
+          <nz-range-picker nzFormat="yyyy-MM-dd" [(ngModel)]="timeRange"></nz-range-picker>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <button nz-button nzType="primary" (click)="searchEvent.next(null)">
+        <i nz-icon nzType="search"></i>{{'查询'| language | async}}
+      </button>
+      <button nz-button nzType="primary" (click)="reset()">
+        <i nz-icon nzType="undo"></i>{{'重置'| language | async}}
+      </button>
+      <button nz-button nzType="primary" style="margin-left: 10px;float:right" (click)="add$.next(null)">
+        <i nz-icon nzType="plus" nzTheme="outline"></i> {{'添加'| language | async}}
+      </button>
+      <app-excel-import interface="api/import/BiathlonGrade" (importSuccess)="searchEvent.next(null)"></app-excel-import>
+      <button nz-button nzType="primary" [disabled]="isExporting === true" (click)="exportHandler()">
+        <i nz-icon [nzType]="isExporting ? 'loading' : 'download'"></i>
+        {{(isExporting === false ? '导出' :  '导出中') | language | async}}
+      </button>
+    </div>
+  </nz-header>
+  <nz-content style="width:100%;">
+    <nz-tabset nzTabPosition="top">
+      <nz-tab [nzTitle]="'表格模式' | language | async">
+        <app-biathlon-grade-table [searchEvent]="out$" [addEvent]="add$" (addSuccess)="searchEvent.next(null)"></app-biathlon-grade-table>
+      </nz-tab>
+      <nz-tab [nzTitle]="'热力图模式' | language | async">
+        <app-biathlon-grade-chart1 [searchEvent]="out$"></app-biathlon-grade-chart1>
+      </nz-tab>
+    </nz-tabset>
+  </nz-content>
+</nz-layout>

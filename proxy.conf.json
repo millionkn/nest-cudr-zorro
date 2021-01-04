@@ -4,13 +4,13 @@
       "/api",
       "/cudr"
     ],
-    "target": "http://localhost:3000/"
+    "target": "http://localhost:3001/"
   },
   {
     "context":[
       "/socket.io"
     ],
-    "target":"http://localhost:3000/",
+    "target":"http://localhost:3001/",
     "ws": true
   }
 ]

@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UserTableComponent } from './user-table/user-table.component';
+import { LoginComponent } from './login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '用户管理' },
-  { path: '用户管理', component: UserTableComponent },
+  { path: '', component: LoginComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UsersRoutingModule { }
+export class LoginRoutingModule { }

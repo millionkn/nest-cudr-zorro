@@ -1,0 +1,81 @@
+<nz-layout class="app-layout">
+  <nz-header>
+    <div class="app-header">
+      <div class="header-logo">
+        <a href="https://ng.ant.design/" target="_blank">
+          <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+          <h1>{{'冬奥重点运动员训练比赛及风环境管理大数据平台'| language | async}}</h1>
+        </a>
+      </div>
+      <div class="header-holder">
+      </div>
+      <div class="header-toolbar">
+        <button nz-button nz-dropdown nzGhost [nzDropdownMenu]="menu4">
+          <i nz-icon nzType="translation" nzTheme="outline"></i>
+        </button>
+        <nz-dropdown-menu #menu4="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item (click)="changeLanguage('中文')">中文</li>
+            <li nz-menu-item (click)="changeLanguage('english')">English</li>
+          </ul>
+        </nz-dropdown-menu>
+        <button nz-button nz-dropdown nzGhost [nzDropdownMenu]="menu2">
+          <i nz-icon nzType="logout" nzTheme="outline"></i>
+        </button>
+        <nz-dropdown-menu #menu2="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item (click)="logout">退出</li>
+          </ul>
+        </nz-dropdown-menu>
+      </div>
+    </div>
+  </nz-header>
+  <nz-layout>
+    <nz-sider class="menu-sidebar" nzCollapsible nzWidth="225px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+      [nzTrigger]="null">
+      <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+        <li nz-submenu [nzOpen]="openIndex === 1" (nzOpenChange)="openIndex = 1" [nzTitle]="'基本信息' | language | async" nzIcon="profile">
+          <ul>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="base/运动员信息">{{'运动员信息'| language | async}}</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="base/赛场信息">{{'赛场信息'| language | async}}</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="base/测风仪">{{'测风仪'| language | async}}</a>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu [nzOpen]="openIndex === 2" (nzOpenChange)="openIndex = 2" [nzTitle]="'训练记录' | language | async" nzIcon="project">
+          <ul>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="log/体征参数">{{'体征参数'| language | async}}</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="log/风环境">{{'风环境'| language | async}}</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="log/滑雪成绩">{{'滑雪成绩'| language | async}}</a>
+            </li>
+          </ul>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="风向标形态">{{'风向标形态'| language | async}}</a>
+        </li>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="影像记录">{{'影像记录'| language | async}}</a>
+        </li>
+        
+      </ul>
+      <span class="sidebar-trigger" (click)="isCollapsed = !isCollapsed">
+        <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+      </span>
+    </nz-sider>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

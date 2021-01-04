@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserTableComponent } from './user-table.component';
+import { BiathlonGradeTabsComponent } from './biathlon-grade-tabs.component';
 
-describe('GoodsTypeComponent', () => {
-  let component: UserTableComponent;
-  let fixture: ComponentFixture<UserTableComponent>;
+describe('BiathlonGradeTabsComponent', () => {
+  let component: BiathlonGradeTabsComponent;
+  let fixture: ComponentFixture<BiathlonGradeTabsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserTableComponent ]
+      declarations: [ BiathlonGradeTabsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserTableComponent);
+    fixture = TestBed.createComponent(BiathlonGradeTabsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

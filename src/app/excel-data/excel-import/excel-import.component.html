@@ -1,0 +1,5 @@
+<button nz-button nzType="primary" [disabled]="isUploading === true" (click)="clickHandler()">
+  <i nz-icon [nzType]="isUploading ? 'loading' : 'upload'"></i>
+  {{(isUploading === false ? '导入' :  '导入中') | language | async}}
+</button>
+<input type="file" (change)="fileChangeHandler($event)" accept=".xls,.xlsx" #selector style="display:none"/>

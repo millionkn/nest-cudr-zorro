@@ -16,6 +16,9 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NumberEditorComponent } from './editors/number-editor/number-editor.component';
 import { DateEditorComponent } from './editors/date-editor/date-editor.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzSwitchModule } from 'ng-zorro-antd';
+import { WindLogModalBinderFactoryService } from './wind-log-modal-binder-factory.service';
+import { LanguageModule } from '../language/language.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,8 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
     NumberEditorComponent,
   ],
   imports: [
+    LanguageModule,
+    NzSwitchModule,
     NzDatePickerModule,
     NzInputNumberModule,
     NzInputModule,
@@ -47,6 +52,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
   providers: [
     ModalEditorService,
     ModalBinderFactoryService,
+    WindLogModalBinderFactoryService,
   ],
 })
 export class ModalEditorModule { }

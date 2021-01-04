@@ -1,6 +1,6 @@
 <nz-form-item *ngFor="let label of labels">
   <nz-form-label [nzSpan]="6">
-    {{label}}
+    {{label | language | async}}
   </nz-form-label>
   <nz-form-control [nzSpan]="14">
     <ng-template #vc></ng-template>
