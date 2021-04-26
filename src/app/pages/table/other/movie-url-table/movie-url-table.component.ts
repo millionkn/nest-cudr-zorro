@@ -10,6 +10,7 @@ import { ItemEditorComponent } from 'src/app/modal-editor/editors/item-editor/it
 import * as dayjs from 'dayjs';
 import { DateEditorComponent } from 'src/app/modal-editor/editors/date-editor/date-editor.component';
 import { DateString } from 'src/app/utils/entity';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @EditorTitle('影像记录')
 class View extends MovieUrlEntity {
@@ -62,6 +63,7 @@ export class MovieUrlTableComponent implements OnInit {
   constructor(
     @Inject(Injector) private injector: Injector,
     @Inject(ModalBinderFactoryService) private factory: ModalBinderFactoryService,
+    @Inject(DomSanitizer) private sanitizer: DomSanitizer,
   ) { }
   binder = this.factory.create(View, this.injector, this.searchEvent.pipe(
     map(() => {
@@ -95,5 +97,9 @@ export class MovieUrlTableComponent implements OnInit {
   reset() {
     this.field = '';
     this.keyword = '';
+  }
+  showingUrl = null as null | SafeResourceUrl;
+  show(url: string) {
+    this.showingUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }

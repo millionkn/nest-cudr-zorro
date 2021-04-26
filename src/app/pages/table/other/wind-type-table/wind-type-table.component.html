@@ -1,66 +1,35 @@
 <nz-layout class="tablePage">
-  <nz-header>
-    <div class="filter">
-      <div>
-        <span>{{'最低风速'| language | async}}</span>
-        <div>
-          <nz-input-number [(ngModel)]="speedMin" [nzMin]="0" [nzMax]="speedMax" [nzStep]="0.01"></nz-input-number>
-        </div>
-      </div>
-      <div>
-        <span>{{'最高风速'| language | async}}</span>
-        <div>
-          <nz-input-number [(ngModel)]="speedMax" [nzMin]="speedMin" [nzStep]="0.01"></nz-input-number>
-        </div>
-      </div>
-      <div>
-        <span>{{'风向'| language | async}}</span>
-        <div>
-          <input nz-input placeholder="" [(ngModel)]="fengxiang" />
-        </div>
-      </div>
-    </div>
-    <div class="right">
-      <button nz-button nzType="primary" (click)="searchEvent.next(null)">
-        <i nz-icon nzType="search"></i>{{'查询'| language | async}}
-      </button>
-      <button nz-button nzType="primary" (click)="reset()">
-        <i nz-icon nzType="undo"></i>{{'重置'| language | async}}
-      </button>
-      <button nz-button nzType="primary" style="margin-left: 10px;float:right" (click)="binder.editHandler()">
-        <i nz-icon nzType="plus" nzTheme="outline"></i> {{'添加'| language | async}}
-      </button>
-    </div>
-  </nz-header>
   <nz-content>
-    <nz-table #table nzShowSizeChanger [nzFrontPagination]="false" 
-    [nzData]="binder.data$ | async"
-      (nzPageSizeChange)="binder.pageSizeChangeHandler($event)" 
-      [nzTotal]="binder.total$ | async"
-      (nzPageIndexChange)="binder.pageIndexChangeHandler($event)" 
-      [nzLoading]="binder.loading$ | async">
+    <nz-table #table [nzData]="tableData" #groupingTable [nzFrontPagination]="false" nzSize="small">
       <thead>
         <tr>
-          <th nzWidth="100px">{{'序号'| language | async}}</th>
-          <th>{{'风向'| language | async}}</th>
-          <th>{{'风速'| language | async}}</th>
-          <th>{{'风向标形态'| language | async}}</th>
-          <th nzWidth="140px" nzRight="0px" nzAlign="center">{{'操作'| language | async}}</th>
+          <th rowspan="2" nzAlign="center"></th>
+          <th *ngFor="let col of colArr" nzAlign="center">{{col.aa}}</th>
+        </tr>
+        <tr>
+          <th *ngFor="let col of colArr" nzAlign="center">{{col.bb}}</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of table.data; let index = index">
-          <td>{{index + 1}}</td>
-          <td>{{data['风向']}}</td>
-          <td>{{data['风速']}}</td>
-          <td>{{data['风向标形态']}}</td>
-          <td nzAlign="center">
-            <a (click)="binder.editHandler(data)">{{'编辑'| language | async}}</a>
-            <nz-divider nzType="vertical"></nz-divider>
-            <a (click)="binder.deleteHandler(data)">{{'删除'| language | async}}</a>
+        <tr *ngFor="let row of table.data">
+          <td nzAlign="center">{{row.speed}}</td>
+          <td *ngFor="let data of row.colArr" nzAlign="center">
+            <a nz-button nzType="primary" *ngIf="!data" nzType="link" disabled>暂无数据</a>
+            <a nz-button nzType="primary" *ngIf="!!data" nzType="link" (click)="show(data)">查看</a>
           </td>
         </tr>
       </tbody>
     </nz-table>
   </nz-content>
 </nz-layout>
+
+<nz-modal [(nzVisible)]="showData" nzTitle="查看数据" (nzOnCancel)="showData = null" (nzOnOk)="showData = null">
+  <ng-template [ngIf]="showData">
+    <p>风向旗与重力方向夹角（A）:{{showData!.angle1}}</p>
+    <p>风向旗与重力方向夹角（B）{{showData!.angle2}}</p>
+    <img [src]="showData!.url" style="width:100%">
+    <video style="width:100%"  controls="controls" autoplay="autoplay">
+      <source [src]="showData!.urlViedo" type="video/mp4" />
+    </video>
+  </ng-template>
+</nz-modal>

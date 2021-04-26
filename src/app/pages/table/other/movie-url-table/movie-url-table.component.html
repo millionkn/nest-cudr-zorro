@@ -55,7 +55,7 @@
           <td>{{data['时间']}}</td>
           <td>{{data['关键字']}}</td>
           <td nzAlign="center">
-            <a [href]="data['影像url']">{{'查看'| language | async}}</a>
+            <a (click)="show(data['影像url'])">{{'查看'| language | async}}</a>
             <nz-divider nzType="vertical"></nz-divider>
             <a (click)="binder.editHandler(data)">{{'编辑'| language | async}}</a>
             <nz-divider nzType="vertical"></nz-divider>
@@ -66,3 +66,11 @@
     </nz-table>
   </nz-content>
 </nz-layout>
+
+<nz-modal [(nzVisible)]="showingUrl" [nzTitle]="'查看' | language | async" (nzOnOk)="showingUrl = null"
+  (nzOnCancel)="showingUrl = null" nzWidth="720">
+  <div style="display:flex;justify-content:center">
+    <img [src]="showingUrl" />
+  </div>
+  
+</nz-modal>

@@ -27,6 +27,14 @@ class View extends AnemometerEntity {
   })
   编号!: string;
   @EditorIs({
+    label: '侧边缘距离',
+    component: () => NumberEditorComponent,
+    params: () => ({
+      allowFloat: true,
+    }),
+  })
+  侧边缘距离!: number
+  @EditorIs({
     label: '起点距离',
     component: () => NumberEditorComponent,
     params: () => ({
