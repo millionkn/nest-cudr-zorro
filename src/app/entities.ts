@@ -36,6 +36,7 @@ export class FieldEntity extends CudrBase<'FieldEntity'> {
 export class AnemometerEntity extends CudrBase<'AnemometerEntity'> {
   赛场!: FieldEntity;
   编号!: string;
+  侧边缘距离!: number;
   起点距离!: number;
   离地高度!: number;
 }
