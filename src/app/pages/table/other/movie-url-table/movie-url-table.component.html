@@ -4,7 +4,8 @@
       <div>
         <span>{{'赛场'| language | async}}</span>
         <div>
-          <input nz-input placeholder="" [(ngModel)]="field" />
+          <app-filter-selector [(ngModel)]="filed" [klass]="FieldEntity" [label]="FieldEntityLabel">
+          </app-filter-selector>
         </div>
       </div>
       <div>
@@ -49,7 +50,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of table.data; let index = index">
+        <tr *ngFor="let data of table.data; let index = index" [class]="{'row-two':index % 2 === 1}">
           <td>{{index + 1}}</td>
           <td>{{data['赛场']['名称']}}</td>
           <td>{{data['时间']}}</td>

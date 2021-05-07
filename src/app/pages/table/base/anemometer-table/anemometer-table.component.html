@@ -4,7 +4,8 @@
       <div>
         <span>{{'赛场'| language | async}}</span>
         <div>
-          <input nz-input placeholder="" [(ngModel)]="filed" />
+          <app-filter-selector [(ngModel)]="filed" [klass]="FieldEntity" [label]="FieldEntityLabel">
+          </app-filter-selector>
         </div>
       </div>
       <div>
@@ -27,25 +28,22 @@
     </div>
   </nz-header>
   <nz-content>
-    <nz-table #table nzShowSizeChanger [nzFrontPagination]="false" 
-    [nzData]="binder.data$ | async"
-      (nzPageSizeChange)="binder.pageSizeChangeHandler($event)" 
-      [nzTotal]="binder.total$ | async"
-      (nzPageIndexChange)="binder.pageIndexChangeHandler($event)" 
-      [nzLoading]="binder.loading$ | async">
+    <nz-table #table nzShowSizeChanger [nzFrontPagination]="false" [nzData]="binder.data$ | async"
+      (nzPageSizeChange)="binder.pageSizeChangeHandler($event)" [nzTotal]="binder.total$ | async"
+      (nzPageIndexChange)="binder.pageIndexChangeHandler($event)" [nzLoading]="binder.loading$ | async">
       <thead>
         <tr>
           <th nzWidth="100px">{{'序号'| language | async}}</th>
           <th>{{'赛场'| language | async}}</th>
           <th>{{'编号'| language | async}}</th>
-          <th>{{'侧边缘距离'| language | async}}</th>
-          <th>{{'起点距离'| language | async}}</th>
-          <th>{{'离地高度'| language | async}}</th>
+          <th>{{'侧边缘距离'| language | async}}(m)</th>
+          <th>{{'起点距离'| language | async}}(m)</th>
+          <th>{{'离地高度'| language | async}}(m)</th>
           <th nzWidth="140px" nzRight="0px" nzAlign="center">{{'操作'| language | async}}</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of table.data; let index = index">
+        <tr *ngFor="let data of table.data; let index = index" [class]="{'row-two':index % 2 === 1}">
           <td>{{index + 1}}</td>
           <td>{{data['赛场']['名称']}}</td>
           <td>{{data['编号']}}</td>

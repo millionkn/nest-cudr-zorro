@@ -44,7 +44,10 @@ export class FieldTableComponent implements OnInit {
 
   searchEvent = new ReplaySubject<null>(1);
 
-  name = '';
+  FieldEntity=FieldEntity;
+  FieldEntityLabel = (e:FieldEntity)=>e.名称
+  filed = null as null | FieldEntity['id'];
+
   city = '';
   country = '';
 
@@ -61,9 +64,7 @@ export class FieldTableComponent implements OnInit {
         城市: {
           '': { like: this.city }
         },
-        名称: {
-          '': { like: this.name },
-        }
+        id: this.filed ? { '': { in: [this.filed] } } : undefined,
       };
       return where;
     })
@@ -73,7 +74,7 @@ export class FieldTableComponent implements OnInit {
     this.searchEvent.next(null);
   }
   reset() {
-    this.name = '';
+    this.filed = null;
     this.city = '';
     this.country = '';
   }

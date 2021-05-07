@@ -41,7 +41,10 @@ export class SportsManTableComponent implements OnInit {
 
   searchEvent = new ReplaySubject<null>(1);
 
-  sprotsManName = '';
+  SportsManEntity = SportsManEntity;
+  SportsManEntityLabel = (e: SportsManEntity) => e.姓名
+  sportManId = null as null | SportsManEntity['id'];
+
   constructor(
     @Inject(Injector) private injector: Injector,
     @Inject(ModalBinderFactoryService) private factory: ModalBinderFactoryService,
@@ -49,9 +52,7 @@ export class SportsManTableComponent implements OnInit {
   binder = this.factory.create(View, this.injector, this.searchEvent.pipe(
     map(() => {
       const where: QueryOption<View> = {
-        姓名: {
-          '': { like: this.sprotsManName }
-        },
+        id: this.sportManId ? { '': { in: [this.sportManId] } } : undefined,
       };
       return where;
     })
@@ -61,6 +62,6 @@ export class SportsManTableComponent implements OnInit {
     this.searchEvent.next(null);
   }
   reset() {
-    this.sprotsManName = '';
+    this.sportManId = null;
   }
 }

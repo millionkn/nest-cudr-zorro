@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of table.data; let index = index">
+    <tr *ngFor="let data of table.data; let index = index" [class]="{'row-two':index % 2 === 1}">
       <td>{{index + 1}}</td>
       <td>{{data['运动员']['姓名']}}</td>
       <td>{{data['赛场']['名称']}}</td>

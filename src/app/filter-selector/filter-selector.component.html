@@ -1,0 +1,4 @@
+<nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择" [ngModel]="value" (ngModelChange)="ngModelChange.next($event)">
+  <nz-option *ngFor="let item of itemArray$|async" [nzValue]="item.id" [nzLabel]="label(item)">
+  </nz-option>
+</nz-select>

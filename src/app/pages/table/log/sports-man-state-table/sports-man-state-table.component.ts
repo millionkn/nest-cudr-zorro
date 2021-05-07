@@ -74,7 +74,10 @@ export class SportsManStateTableComponent implements OnInit {
     dayjs().add(-7, 'date').toDate(),
     dayjs().toDate(),
   ];
-  sprotsManName = '';
+  
+  SportsManEntity = SportsManEntity;
+  SportsManEntityLabel = (e: SportsManEntity) => e.姓名
+  sportManId = null as null | SportsManEntity['id'];
 
   searchEvent = new ReplaySubject<null>(1);
 
@@ -86,9 +89,7 @@ export class SportsManStateTableComponent implements OnInit {
     map(() => {
       const where: QueryOption<View> = {
         运动员: {
-          姓名: {
-            '': { like: this.sprotsManName },
-          }
+          id: this.sportManId ? { '': { in: [this.sportManId] } } : undefined,
         },
         时间: {
           '': {
@@ -109,6 +110,6 @@ export class SportsManStateTableComponent implements OnInit {
       dayjs().add(-7, 'date').toDate(),
       dayjs().toDate(),
     ];
-    this.sprotsManName = '';
+    this.sportManId = null;
   }
 }

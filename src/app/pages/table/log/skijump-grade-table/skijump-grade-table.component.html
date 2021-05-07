@@ -40,21 +40,21 @@
           <th>{{'赛场'| language | async}}</th>
           <th>{{'时间'| language | async}}</th>
           <th>{{'天气'| language | async}}</th>
-          <th>{{'气温'| language | async}}</th>
-          <th>{{'气压'| language | async}}</th>
-          <th>{{'体重'| language | async}}</th>
-          <th>{{'滑行速度'| language | async}}</th>
-          <th>{{'滑行姿势'| language | async}}</th>
-          <th>{{'出台速度'| language | async}}</th>
+          <th>{{'气温'| language | async}}(℃)</th>
+          <th>{{'气压'| language | async}}(hPa)</th>
+          <th>{{'体重'| language | async}}(kg)</th>
+          <th>{{'滑行速度'| language | async}}(m/s)</th>
+          <th>{{'滑行姿势'| language | async}}(m/s)</th>
+          <th>{{'出台速度'| language | async}}(m/s)</th>
           <th>{{'空中姿势'| language | async}}</th>
-          <th>{{'落地距离'| language | async}}</th>
+          <th>{{'落地距离'| language | async}}(m)</th>
           <th>{{'成绩'| language | async}}</th>
           <th>{{'记录人'| language | async}}</th>
           <th nzWidth="140px" nzRight="0px" nzAlign="center">{{'操作'| language | async}}</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of table.data; let index = index">
+        <tr *ngFor="let data of table.data; let index = index" [class]="{'row-two':index % 2 === 1}">
           <td>{{index + 1}}</td>
           <td>{{data['运动员']['姓名']}}</td>
           <td>{{data['赛场']['名称']}}</td>

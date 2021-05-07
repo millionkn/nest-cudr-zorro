@@ -59,8 +59,11 @@ class View extends AnemometerEntity {
 })
 export class AnemometerTableComponent implements OnInit {
 
-  searchEvent = new ReplaySubject<null>(1);
-  filed = '';
+  FieldEntity=FieldEntity;
+  FieldEntityLabel = (e:FieldEntity)=>e.名称
+  filed = null as null | FieldEntity['id'];
+
+  searchEvent = new ReplaySubject<null>(1);  
   identifity = '';
   constructor(
     @Inject(Injector) private injector: Injector,
@@ -70,11 +73,7 @@ export class AnemometerTableComponent implements OnInit {
     map(() => {
       const where: QueryOption<View> = {
         赛场: {
-          名称: {
-            '': {
-              like: this.filed,
-            }
-          }
+          id: this.filed ? { '': { in: [this.filed] } } : undefined
         },
         编号: {
           '': {
@@ -90,7 +89,7 @@ export class AnemometerTableComponent implements OnInit {
     this.searchEvent.next(null);
   }
   reset() {
-    this.filed = '';
+    this.filed = null;
     this.identifity = '';
   }
 }

@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of table.data">
+        <tr *ngFor="let row of table.data; let index = index" [class]="{'row-two':index % 2 === 1}">
           <td nzAlign="center">{{row.speed}}</td>
           <td *ngFor="let data of row.colArr" nzAlign="center">
             <a nz-button nzType="primary" *ngIf="!data" nzType="link" disabled>暂无数据</a>

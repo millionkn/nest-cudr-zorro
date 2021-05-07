@@ -45,15 +45,15 @@
           <th>{{'赛场'| language | async}}</th>
           <th>{{'测风仪'| language | async}}</th>
           <th>{{'时间'| language | async}}</th>
-          <th>{{'风向'| language | async}}</th>
-          <th>{{'风速'| language | async}}</th>
-          <th>{{'温度'| language | async}}</th>
-          <th>{{'气压'| language | async}}</th>
+          <th>{{'风向'| language | async}}(°)</th>
+          <th>{{'风速'| language | async}}(m/s)</th>
+          <th>{{'温度'| language | async}}(℃)</th>
+          <th>{{'气压'| language | async}}(hPa)</th>
           <th nzWidth="140px" nzRight="0px" nzAlign="center">{{'操作'| language | async}}</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of table.data; let index = index">
+        <tr *ngFor="let data of table.data; let index = index" [class]="{'row-two':index % 2 === 1}">
           <td>{{index + 1}}</td>
           <td>{{data['赛场']['名称']}}</td>
           <td>{{data['测风仪']['编号']}}</td>

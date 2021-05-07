@@ -1,15 +1,16 @@
-<nz-layout class="app-layout">
+<nz-layout class="app-layout big-font">
   <nz-header>
     <div class="app-header">
       <div class="header-logo">
-        <a href="https://ng.ant.design/" target="_blank">
-          <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <a href="" target="_blank">
+          <img src="assets/imgs/logo.jpg" alt="logo">
           <h1>{{'冬奥重点运动员训练比赛及风环境管理大数据平台'| language | async}}</h1>
         </a>
       </div>
       <div class="header-holder">
       </div>
       <div class="header-toolbar">
+        <h2>{{'国家重点研发计划“科技冬奥”专项 雪上项目场地环境要素影响评估与临场决策辅助支持系统'|language|async}}</h2>
         <button nz-button nz-dropdown nzGhost [nzDropdownMenu]="menu4">
           <i nz-icon nzType="translation" nzTheme="outline"></i>
         </button>
@@ -32,9 +33,10 @@
   </nz-header>
   <nz-layout>
     <nz-sider class="menu-sidebar" nzCollapsible nzWidth="225px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
-      [nzTrigger]="null">
-      <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-        <li nz-submenu [nzOpen]="openIndex === 1" (nzOpenChange)="openIndex = 1" [nzTitle]="'基本信息' | language | async" nzIcon="profile">
+      nzTheme="dark" [nzTrigger]="null">
+      <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed" nzTheme="dark">
+        <li nz-submenu [nzOpen]="openIndex === 1" (nzOpenChange)="openIndex = 1" [nzTitle]="'基本信息' | language | async"
+          nzIcon="profile">
           <ul>
             <li nz-menu-item nzMatchRouter>
               <a routerLink="base/运动员信息">{{'运动员信息'| language | async}}</a>
@@ -47,7 +49,8 @@
             </li>
           </ul>
         </li>
-        <li nz-submenu [nzOpen]="openIndex === 2" (nzOpenChange)="openIndex = 2" [nzTitle]="'训练记录' | language | async" nzIcon="project">
+        <li nz-submenu [nzOpen]="openIndex === 2" (nzOpenChange)="openIndex = 2" [nzTitle]="'训练记录' | language | async"
+          nzIcon="project">
           <ul>
             <li nz-menu-item nzMatchRouter>
               <a routerLink="log/体征参数">{{'体征参数'| language | async}}</a>
@@ -66,7 +69,7 @@
         <li nz-menu-item nzMatchRouter>
           <a routerLink="other/影像记录">{{'影像记录'| language | async}}</a>
         </li>
-        
+
       </ul>
       <span class="sidebar-trigger" (click)="isCollapsed = !isCollapsed">
         <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>

@@ -53,7 +53,11 @@ class View extends MovieUrlEntity {
 export class MovieUrlTableComponent implements OnInit {
 
   searchEvent = new ReplaySubject<null>(1);
-  field = '';
+
+  FieldEntity=FieldEntity;
+  FieldEntityLabel = (e:FieldEntity)=>e.名称
+  filed = null as null | FieldEntity['id'];
+
   keyword = '';
   timeRange = [
     dayjs().add(-1, 'month').toDate(),
@@ -69,11 +73,7 @@ export class MovieUrlTableComponent implements OnInit {
     map(() => {
       const where: QueryOption<View> = {
         赛场: {
-          名称: {
-            '': {
-              like: this.field,
-            }
-          }
+          id: this.filed ? { '': { in: [this.filed] } } : undefined
         },
         关键字: {
           '': {
@@ -95,7 +95,7 @@ export class MovieUrlTableComponent implements OnInit {
     this.searchEvent.next(null);
   }
   reset() {
-    this.field = '';
+    this.filed = null;
     this.keyword = '';
   }
   showingUrl = null as null | SafeResourceUrl;

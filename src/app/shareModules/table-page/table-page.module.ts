@@ -14,8 +14,12 @@ import { NzSelectModule, NzFormModule } from 'ng-zorro-antd';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { LanguageModule } from 'src/app/language/language.module';
+import { FilterSelectorComponent } from 'src/app/filter-selector/filter-selector.component';
 
 @NgModule({
+  declarations:[
+    FilterSelectorComponent,
+  ],
   imports: [
     LanguageModule,
     NzInputNumberModule,
@@ -51,6 +55,7 @@ import { LanguageModule } from 'src/app/language/language.module';
     NzGridModule,
     CommonModule,
     LanguageModule,
+    FilterSelectorComponent,
   ],
 })
 export class TablePageModule { }

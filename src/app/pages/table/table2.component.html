@@ -1,8 +1,8 @@
-<nz-layout class="app-layout">
+<nz-layout class="app-layout big-font"> 
   <nz-header>
     <div class="app-header">
       <div class="header-logo">
-        <a href="https://ng.ant.design/" target="_blank">
+        <a href="" target="_blank">
           <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
           <h1>{{'冬奥重点运动员训练比赛及风环境管理大数据平台'| language | async}}</h1>
         </a>
@@ -32,8 +32,8 @@
   </nz-header>
   <nz-layout>
     <nz-sider class="menu-sidebar" nzCollapsible nzWidth="225px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
-      [nzTrigger]="null">
-      <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+    nzTheme="dark" [nzTrigger]="null">
+      <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed" nzTheme="dark">
         <li nz-submenu [nzOpen]="openIndex === 1" (nzOpenChange)="openIndex = 1" [nzTitle]="'基本信息' | language | async" nzIcon="profile">
           <ul>
             <li nz-menu-item nzMatchRouter>

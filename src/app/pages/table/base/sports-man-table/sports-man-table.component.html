@@ -4,7 +4,8 @@
       <div>
         <span>{{'运动员姓名'| language | async}}</span>
         <div>
-          <input nz-input placeholder="" [(ngModel)]="sprotsManName" />
+          <app-filter-selector [(ngModel)]="sportManId" [klass]="SportsManEntity" [label]="SportsManEntityLabel">
+          </app-filter-selector>
         </div>
       </div>
     </div>
@@ -32,12 +33,12 @@
           <th nzWidth="100px">{{'序号'| language | async}}</th>
           <th>{{'姓名'| language | async}}</th>
           <th>{{'性别'| language | async}}</th>
-          <th>{{'身高'| language | async}}</th>
+          <th>{{'身高'| language | async}}(m)</th>
           <th nzWidth="140px" nzRight="0px" nzAlign="center">{{'操作'| language | async}}</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of table.data; let index = index">
+        <tr *ngFor="let data of table.data; let index = index" [class]="{'row-two':index % 2 === 1}">
           <td>{{index + 1}}</td>
           <td>{{data['姓名']}}</td>
           <td>{{data['性别']}}</td>
