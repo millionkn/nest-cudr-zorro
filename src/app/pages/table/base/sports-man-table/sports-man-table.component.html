@@ -34,7 +34,7 @@
           <th>{{'姓名'| language | async}}</th>
           <th>{{'性别'| language | async}}</th>
           <th>{{'身高'| language | async}}(m)</th>
-          <th nzWidth="140px" nzRight="0px" nzAlign="center">{{'操作'| language | async}}</th>
+          <th nzWidth="240px" nzRight="0px" nzAlign="center">{{'操作'| language | async}}</th>
         </tr>
       </thead>
       <tbody>
@@ -44,6 +44,8 @@
           <td>{{data['性别']}}</td>
           <td>{{data['身高']}}</td>
           <td nzAlign="center">
+            <a (click)="clickName(data.id)">{{'查看成绩'| language | async}}</a>
+            <nz-divider nzType="vertical"></nz-divider>
             <a (click)="binder.editHandler(data)">{{'编辑'| language | async}}</a>
             <nz-divider nzType="vertical"></nz-divider>
             <a (click)="binder.deleteHandler(data)">{{'删除'| language | async}}</a>

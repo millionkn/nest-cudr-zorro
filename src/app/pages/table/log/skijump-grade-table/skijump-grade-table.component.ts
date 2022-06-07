@@ -11,6 +11,7 @@ import { DateEditorComponent } from 'src/app/modal-editor/editors/date-editor/da
 import { NumberEditorComponent } from 'src/app/modal-editor/editors/number-editor/number-editor.component';
 import * as dayjs from 'dayjs';
 import { DateString } from 'src/app/utils/entity';
+import { SportsManClickService } from 'src/app/service/sportsManClick.serivce';
 
 @EditorTitle('滑雪成绩')
 class View extends SkijumpGradeEntity {
@@ -127,7 +128,6 @@ class View extends SkijumpGradeEntity {
   styleUrls: ['./skijump-grade-table.component.scss']
 })
 export class SkijumpGradeTableComponent implements OnInit {
-
   searchEvent = new ReplaySubject<null>(1);
 
   sprotsManName = '';
@@ -135,11 +135,13 @@ export class SkijumpGradeTableComponent implements OnInit {
   constructor(
     @Inject(Injector) private injector: Injector,
     @Inject(ModalBinderFactoryService) private factory: ModalBinderFactoryService,
+    @Inject(SportsManClickService) private sportsManClickService: SportsManClickService,
   ) { }
   binder = this.factory.create(View, this.injector, this.searchEvent.pipe(
     map(() => {
       const where: QueryOption<View> = {
         运动员: {
+          id: { '': { in: !this.sportsManClickService.sportsManId ? undefined : [this.sportsManClickService.sportsManId] } },
           姓名: { '': { like: this.sprotsManName } }
         },
         赛场: {},

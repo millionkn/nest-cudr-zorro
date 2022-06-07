@@ -5,6 +5,7 @@ import { SportsManEntity } from 'src/app/entities';
 import * as dayjs from 'dayjs';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { SportsManClickService } from 'src/app/service/sportsManClick.serivce';
 
 @Component({
   selector: 'app-biathlon-grade-tabs',
@@ -16,9 +17,13 @@ export class BiathlonGradeTabsComponent implements OnInit {
   constructor(
     @Inject(JsonQueryService) private jsonQuery: JsonQueryService,
     @Inject(HttpClient) private http: HttpClient,
-  ) { }
+    @Inject(SportsManClickService) private sportsManClickService: SportsManClickService,
+  ) { 
+    this.targetSportsManId = this.sportsManClickService.sportsManId || undefined
+    this.sportsManClickService.sportsManId = null
+  }
 
-  targetSportsManId?: SportsManEntity['id'];
+  targetSportsManId: undefined | SportsManEntity['id']
   timeRange: Date[] = [
   ];
   searchEvent = new BehaviorSubject(null);
