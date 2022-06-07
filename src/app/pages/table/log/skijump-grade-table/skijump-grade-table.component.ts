@@ -131,10 +131,7 @@ export class SkijumpGradeTableComponent implements OnInit {
   searchEvent = new ReplaySubject<null>(1);
 
   sprotsManName = '';
-  timeRange = [
-    dayjs().add(-1, 'month').toDate(),
-    dayjs().toDate(),
-  ];
+  timeRange: Date[] = [];
   constructor(
     @Inject(Injector) private injector: Injector,
     @Inject(ModalBinderFactoryService) private factory: ModalBinderFactoryService,
@@ -148,8 +145,8 @@ export class SkijumpGradeTableComponent implements OnInit {
         赛场: {},
         时间: {
           '': {
-            moreOrEqual: dayjs(this.timeRange[0]).startOf('day').format('YYYY-MM-DD HH:mm:ss'),
-            lessOrEqual: dayjs(this.timeRange[1]).endOf('day').format('YYYY-MM-DD HH:mm:ss'),
+            moreOrEqual: !this.timeRange[0] ? undefined : dayjs(this.timeRange[0]).startOf('day').format('YYYY-MM-DD HH:mm:ss'),
+            lessOrEqual: !this.timeRange[1] ? undefined : dayjs(this.timeRange[1]).endOf('day').format('YYYY-MM-DD HH:mm:ss'),
           }
         }
       };
@@ -162,9 +159,6 @@ export class SkijumpGradeTableComponent implements OnInit {
   }
   reset() {
     this.sprotsManName = '';
-    this.timeRange = [
-      dayjs().add(-1, 'month').toDate(),
-      dayjs().toDate(),
-    ];
+    this.timeRange = [];
   }
 }

@@ -84,8 +84,8 @@ export class BiathlonGradeTableComponent implements OnInit, OnDestroy {
 
   @Input()
   searchEvent!: Subject<{
-    startDate: string,
-    endDate: string,
+    startDate: string | undefined,
+    endDate: string | undefined,
     targetSportsManId?: SportsManEntity['id'],
   }>;
 
@@ -120,6 +120,9 @@ export class BiathlonGradeTableComponent implements OnInit, OnDestroy {
           赛场: {},
           时间: {
             '': {
+              '': {
+                sortIndex: -1,
+              },
               moreOrEqual: startDate,
               lessOrEqual: endDate,
             }

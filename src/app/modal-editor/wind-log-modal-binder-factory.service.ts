@@ -30,8 +30,8 @@ export class WindLogModalBinderFactoryService {
     injector: Injector,
     requestBody$: Observable<{
       targetFieldId: FieldEntity['id'],
-      startDate: Date,
-      endDate: Date,
+      startDate: Date | undefined,
+      endDate: Date | undefined,
     }>,
   ) {
     const editorService = this.editorService;

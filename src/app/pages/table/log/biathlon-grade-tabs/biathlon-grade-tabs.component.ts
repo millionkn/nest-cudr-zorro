@@ -19,15 +19,13 @@ export class BiathlonGradeTabsComponent implements OnInit {
   ) { }
 
   targetSportsManId?: SportsManEntity['id'];
-  timeRange = [
-    dayjs().add(-1, 'month').toDate(),
-    dayjs().toDate(),
+  timeRange: Date[] = [
   ];
   searchEvent = new BehaviorSubject(null);
   out$ = this.searchEvent.pipe(map(() => {
     return {
-      startDate: dayjs(this.timeRange[0]).format('YYYY-MM-DD HH:mm:ss'),
-      endDate: dayjs(this.timeRange[1]).format('YYYY-MM-DD HH:mm:ss'),
+      startDate: !this.timeRange[0] ? undefined : dayjs(this.timeRange[0]).format('YYYY-MM-DD HH:mm:ss'),
+      endDate: !this.timeRange[1] ? undefined : dayjs(this.timeRange[1]).format('YYYY-MM-DD HH:mm:ss'),
       targetSportsManId: this.targetSportsManId,
     };
   }));
@@ -41,8 +39,6 @@ export class BiathlonGradeTabsComponent implements OnInit {
   reset() {
     this.targetSportsManId = undefined;
     this.timeRange = [
-      dayjs().add(-1, 'month').toDate(),
-      dayjs().toDate(),
     ];
     this.searchEvent.next(null);
   }

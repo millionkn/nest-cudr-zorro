@@ -1,20 +1,12 @@
 <div class="container">
 
   <!-- 登录表单 -->
-  <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+  <form nz-form [formGroup]="validateForm" class="login-form">
     <div class="title">
       <div style="font-size: 28px;font-weight: bold;letter-spacing: 2px;">冬奥重点运动员训练比赛及风环境管理大数据平台</div>
     </div>
     <div class="desc">
     </div>
-    <nz-form-item>
-      <nz-form-control nzErrorTip="请选择系统!">
-        <nz-radio-group formControlName="base">
-          <label nz-radio nzValue="skijump">跳台滑雪</label>
-          <label nz-radio nzValue="biathlon">冬季两项</label>
-        </nz-radio-group>
-      </nz-form-control>
-    </nz-form-item>
     <nz-form-item>
       <nz-form-control nzErrorTip="请输入用户名或手机号!">
         <nz-input-group nzPrefixIcon="user" style="font-size: 16px; color: #08c;">
@@ -36,7 +28,13 @@
         </label>
       </nz-form-control>
     </nz-form-item>
-    <button nz-button class="login-form-button" [nzType]="'primary'">登录</button>
+    <div style="display:flex">
+      <button nz-button class="login-form-button" [nzType]="'primary'" (click)="submitForm('skijump')">跳台滑雪</button>
+      <button nz-button class="login-form-button" [nzType]="'primary'" (click)="submitForm('biathlon')">冬季两项</button>
+      
+
+    </div>
+    
   </form>
 
   <div style="position: absolute;bottom: 20px; right: 30px;">版本号:V1.00.00</div>

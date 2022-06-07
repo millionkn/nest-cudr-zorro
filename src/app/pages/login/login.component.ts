@@ -26,20 +26,18 @@ export class LoginComponent implements OnInit {
       this.validateForm = this.fb.group({
         userName: [window.localStorage.getItem('vuserName'), [Validators.required]],
         password: [window.localStorage.getItem('vpassword'), [Validators.required]],
-        base: [window.localStorage.getItem('vbase'), [Validators.required]],
         remember: [true]
       });
     } else {
       this.validateForm = this.fb.group({
         userName: ['', [Validators.required]],
         password: ['', [Validators.required]],
-        base: ['', [Validators.required]],
         remember: [false]
       });
     }
   }
 
-  async submitForm() {
+  async submitForm(base: 'skijump' | 'biathlon') {
     for (const i in this.validateForm.controls) {
       if (this.validateForm.controls.hasOwnProperty(i)) {
         this.validateForm.controls[i].markAsDirty();
@@ -48,7 +46,6 @@ export class LoginComponent implements OnInit {
     }
     const username = this.validateForm.value.userName;
     const password = this.validateForm.value.password;
-    const base = this.validateForm.value.base;
 
     if (username !== '' && password !== '') {
       try {
@@ -64,12 +61,12 @@ export class LoginComponent implements OnInit {
       window.localStorage.setItem('vremember', this.validateForm.value.remember.toString());
       window.localStorage.setItem('vuserName', this.validateForm.value.userName);
       window.localStorage.setItem('vpassword', this.validateForm.value.password);
-      window.localStorage.setItem('vbase', this.validateForm.value.base);
     } else {
       window.localStorage.setItem('vremember', false.toString());
       window.localStorage.setItem('vuserName', '');
       window.localStorage.setItem('vpassword', '');
-      window.localStorage.setItem('vbase', '');
     }
+
+
   }
 }

@@ -88,9 +88,7 @@ export class WindLogTableComponent implements OnInit {
     @Inject(HttpClient) private http: HttpClient,
   ) { }
   targetFieldId!: FieldEntity['id'];
-  timeRange = [
-    dayjs().add(-1, 'month').toDate(),
-    dayjs().toDate(),
+  timeRange: Date[] = [
   ];
 
   fieldArray$ = this.jsonQuery.query(FieldEntity, { where: {} }).then(({ data }) => data);
@@ -98,8 +96,8 @@ export class WindLogTableComponent implements OnInit {
     concatMap(async () => {
       return {
         targetFieldId: this.targetFieldId,
-        startDate: this.timeRange[0],
-        endDate: this.timeRange[1],
+        startDate: !this.timeRange[0] ? undefined : this.timeRange[0],
+        endDate: !this.timeRange[1] ? undefined : this.timeRange[1],
       };
     })
   ));

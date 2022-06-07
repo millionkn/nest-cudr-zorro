@@ -66,8 +66,8 @@ export class BiathlonGradeChart1Component implements AfterViewInit {
 
   @Input()
   searchEvent!: Subject<{
-    startDate: string,
-    endDate: string,
+    startDate: string | undefined,
+    endDate: string | undefined,
     targetSportsManId?: SportsManEntity['id']
   }>;
 
