@@ -11,6 +11,7 @@ import { BiathlonGradeTabsComponent } from './biathlon-grade-tabs/biathlon-grade
 import { BiathlonGradeChart1Component } from './biathlon-grade-chart1/biathlon-grade-chart1.component';
 import { ExcelDataModule } from 'src/app/excel-data/excel-data.module';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { BiathlonGradeTable2Component } from './biathlon-grade-table2/biathlon-grade-table2.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     BiathlonGradeTableComponent,
     BiathlonGradeTabsComponent,
     BiathlonGradeChart1Component,
+    BiathlonGradeTable2Component,
   ],
   imports: [
     NzTabsModule,

@@ -1,0 +1,39 @@
+<nz-table #table nzShowSizeChanger [nzFrontPagination]="false" [nzData]="data$ | async"
+  (nzPageSizeChange)="pageSize$.next($event)" [nzTotal]="total$ | async" (nzPageIndexChange)="pageIndex$.next($event)">
+  <thead>
+    <tr>
+      <th nzWidth="100px">{{'序号'| language | async}}</th>
+      <th>{{'运动员'| language | async}}</th>
+      <th>{{'赛场'| language | async}}</th>
+      <th>{{'射击姿势'| language | async}}</th>
+      <th>{{'模式'| language | async}}</th>
+      <th>{{'状态'| language | async}}</th>
+      <th>{{'记录组起始时间'| language | async}}</th>
+      <th>激发间隔(秒)/成绩-1</th>
+      <th>激发间隔(秒)/成绩-2</th>
+      <th>激发间隔(秒)/成绩-3</th>
+      <th>激发间隔(秒)/成绩-4</th>
+      <th>激发间隔(秒)/成绩-5</th>
+      <th>总计</th>
+      <th>{{'记录人'| language | async}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of table.data; let index = index" [class]="{'row-two':index % 2 === 1}">
+      <td>{{index + 1}}</td>
+      <td>{{data['运动员']['姓名']}}</td>
+      <td>{{data['赛场']['名称']}}</td>
+      <td>{{data['射击姿势']}}</td>
+      <td>{{data['模式']}}</td>
+      <td>{{data['状态']}}</td>
+      <td>{{data['记录组起始时间']|date:'yyyy-MM-dd hh:mm:ss'}}</td>
+      <td>{{data['时间1'] | number:'1.1-1' }}/{{data['成绩1'] ? '命中' : '未命中'}}</td>
+      <td>{{data['时间2'] | number:'1.1-1'}}/{{data['成绩2'] ? '命中' : '未命中'}}</td>
+      <td>{{data['时间3'] | number:'1.1-1'}}/{{data['成绩3'] ? '命中' : '未命中'}}</td>
+      <td>{{data['时间4'] | number:'1.1-1'}}/{{data['成绩4'] ? '命中' : '未命中'}}</td>
+      <td>{{data['时间5'] | number:'1.1-1'}}/{{data['成绩5'] ? '命中' : '未命中'}}</td>
+      <td>{{(0+(data['成绩1']||0)+(data['成绩2']||0)+(data['成绩3']||0)+(data['成绩4']||0)+(data['成绩5']||0)) | number:'1.1-1'}}</td>
+      <td>{{data['记录人']}}</td>
+    </tr>
+  </tbody>
+</nz-table>

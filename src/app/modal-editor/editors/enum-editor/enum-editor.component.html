@@ -1,0 +1,4 @@
+<nz-select nzShowSearch [ngModel]="value" (ngModelChange)="selectChangeHandler($event)">
+  <nz-option *ngFor="let enum of enumArr;let i = index" [nzValue]="enum.id" [nzLabel]="enum.label">
+  </nz-option>
+</nz-select>

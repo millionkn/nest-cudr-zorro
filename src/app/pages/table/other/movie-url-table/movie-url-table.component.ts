@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, Injector } from '@angular/core';
-import { MovieUrlEntity, FieldEntity } from 'src/app/entities';
+import { MovieUrlEntity, FieldEntity, BlobData } from 'src/app/entities';
 import { ModalBinderFactoryService } from 'src/app/modal-editor/modal-binder-factory.service';
 import { EditorIs, EditorTitle } from 'src/app/modal-editor/decorators';
 import { StringEditorComponent } from 'src/app/modal-editor/editors/string-editor/string-editor.component';
@@ -11,6 +11,8 @@ import * as dayjs from 'dayjs';
 import { DateEditorComponent } from 'src/app/modal-editor/editors/date-editor/date-editor.component';
 import { DateString } from 'src/app/utils/entity';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { EnumEditorComponent } from 'src/app/modal-editor/editors/enum-editor/enum-editor.component';
+import { FileEditorComponent } from 'src/app/modal-editor/editors/file-editor/file-editor.component';
 
 @EditorTitle('影像记录')
 class View extends MovieUrlEntity {
@@ -32,14 +34,25 @@ class View extends MovieUrlEntity {
   })
   时间!: DateString;
   @EditorIs({
+    label: '数据类型',
+    component: () => EnumEditorComponent,
+    params: () => ({
+      arr: [
+        { id: '照片', label: '照片' },
+        { id: '视频', label: '视频' },
+      ]
+    }),
+  })
+  数据类型!: '照片' | '视频';
+  @EditorIs({
     label: '关键字',
     component: () => StringEditorComponent,
     params: () => ({}),
   })
   关键字!: string;
   @EditorIs({
-    label: '影像url',
-    component: () => StringEditorComponent,
+    label: '文件',
+    component: () => FileEditorComponent,
     params: () => ({}),
   })
   影像url!: string;
@@ -54,14 +67,12 @@ export class MovieUrlTableComponent implements OnInit {
 
   searchEvent = new ReplaySubject<null>(1);
 
-  FieldEntity=FieldEntity;
-  FieldEntityLabel = (e:FieldEntity)=>e.名称
+  FieldEntity = FieldEntity;
+  FieldEntityLabel = (e: FieldEntity) => e.名称
   filed = null as null | FieldEntity['id'];
 
   keyword = '';
-  timeRange = [
-    dayjs().add(-1, 'month').toDate(),
-    dayjs().toDate(),
+  timeRange: Date[] = [
   ];
 
   constructor(
@@ -82,8 +93,8 @@ export class MovieUrlTableComponent implements OnInit {
         },
         时间: {
           '': {
-            moreOrEqual: dayjs(this.timeRange[0]).startOf('day').format('YYYY-MM-DD HH:mm:ss'),
-            lessOrEqual: dayjs(this.timeRange[1]).endOf('day').format('YYYY-MM-DD HH:mm:ss'),
+            moreOrEqual: !this.timeRange[0] ? undefined : dayjs(this.timeRange[0]).startOf('day').format('YYYY-MM-DD HH:mm:ss'),
+            lessOrEqual: !this.timeRange[1] ? undefined : dayjs(this.timeRange[1]).endOf('day').format('YYYY-MM-DD HH:mm:ss'),
           }
         }
       };
@@ -98,8 +109,13 @@ export class MovieUrlTableComponent implements OnInit {
     this.filed = null;
     this.keyword = '';
   }
-  showingUrl = null as null | SafeResourceUrl;
-  show(url: string) {
-    this.showingUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  showPhotoUrl = null as null | SafeResourceUrl;
+  showMovieUrl = null as null | SafeResourceUrl;
+  show(url: string, type: string) {
+    if (type === '照片') {
+      this.showPhotoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    } else if (type === '视频') {
+      this.showMovieUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    }
   }
 }

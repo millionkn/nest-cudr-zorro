@@ -46,6 +46,7 @@
           <th>{{'赛场'| language | async}}</th>
           <th>{{'时间'| language | async}}</th>
           <th>{{'关键字'| language | async}}</th>
+          <th>{{'数据类型'| language | async}}</th>
           <th nzWidth="240px" nzRight="0px" nzAlign="center">{{'操作'| language | async}}</th>
         </tr>
       </thead>
@@ -55,8 +56,9 @@
           <td>{{data['赛场']['名称']}}</td>
           <td>{{data['时间']}}</td>
           <td>{{data['关键字']}}</td>
+          <td>{{data['数据类型']}}</td>
           <td nzAlign="center">
-            <a (click)="show(data['影像url'])">{{'查看'| language | async}}</a>
+            <a (click)="show(data['影像url'],data['数据类型'])">{{'查看'| language | async}}</a>
             <nz-divider nzType="vertical"></nz-divider>
             <a (click)="binder.editHandler(data)">{{'编辑'| language | async}}</a>
             <nz-divider nzType="vertical"></nz-divider>
@@ -68,10 +70,19 @@
   </nz-content>
 </nz-layout>
 
-<nz-modal [(nzVisible)]="showingUrl" [nzTitle]="'查看' | language | async" (nzOnOk)="showingUrl = null"
-  (nzOnCancel)="showingUrl = null" nzWidth="720">
+<nz-modal [(nzVisible)]="showPhotoUrl" [nzTitle]="'查看' | language | async" (nzOnOk)="showPhotoUrl = null"
+  (nzOnCancel)="showPhotoUrl = null" nzWidth="720">
   <div style="display:flex;justify-content:center">
-    <img [src]="showingUrl" />
+    <img [src]="showPhotoUrl" style="width:720px"/>
   </div>
   
+</nz-modal>
+
+<nz-modal [(nzVisible)]="showMovieUrl" [nzTitle]="'查看' | language | async" (nzOnOk)="showMovieUrl = null"
+  (nzOnCancel)="showMovieUrl = null" nzWidth="720">
+  <div style="display:flex;justify-content:center">
+    <video style="width:100%"  controls="controls" autoplay="autoplay"  style="width:720px">
+      <source [src]="showMovieUrl" type="video/mp4" />
+    </video>
+  </div>
 </nz-modal>

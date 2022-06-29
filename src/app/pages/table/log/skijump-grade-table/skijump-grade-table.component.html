@@ -2,6 +2,13 @@
   <nz-header>
     <div class="filter">
       <div>
+        <span>{{'赛场'| language | async}}</span>
+        <div>
+          <app-filter-selector [(ngModel)]="fieldId" [klass]="FieldEntity" [label]="fieldEntityLabel">
+          </app-filter-selector>
+        </div>
+      </div>
+      <div>
         <span>{{'运动员姓名'| language | async}}</span>
         <div>
           <input nz-input placeholder="" [(ngModel)]="sprotsManName" />

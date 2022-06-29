@@ -9,9 +9,9 @@ import { QueryOption } from 'src/app/service/json-query.service';
 import { ItemEditorComponent } from 'src/app/modal-editor/editors/item-editor/item-editor.component';
 import { DateEditorComponent } from 'src/app/modal-editor/editors/date-editor/date-editor.component';
 import { DateString } from 'src/app/utils/entity';
-import * as dayjs from 'dayjs';
 import { BoolEditorComponent } from 'src/app/modal-editor/editors/bool-editor/bool-editor.component';
 import { HttpClient } from '@angular/common/http';
+import { EnumEditorComponent } from 'src/app/modal-editor/editors/enum-editor/enum-editor.component';
 
 @EditorTitle('射击成绩')
 class View extends BiathlonGradeEntity {
@@ -33,6 +33,13 @@ class View extends BiathlonGradeEntity {
     }),
   })
   赛场!: FieldEntity;
+  @EditorIs({
+    label: '记录组起始时间',
+    component: () => DateEditorComponent,
+    params: () => ({
+    }),
+  })
+  记录组起始时间!: string
   @EditorIs({
     label: '时间',
     component: () => DateEditorComponent,
@@ -57,10 +64,38 @@ class View extends BiathlonGradeEntity {
   成绩!: boolean;
   @EditorIs({
     label: '射击姿势',
-    component: () => StringEditorComponent,
-    params: () => ({}),
+    component: () => EnumEditorComponent,
+    params: () => ({
+      arr: [
+        { label: 'Pone', id: 'Pone' },
+        { label: 'Stand', id: 'Stand' },
+      ]
+    }),
   })
   射击姿势!: string;
+  @EditorIs({
+    label: '射击姿势',
+    component: () => EnumEditorComponent,
+    params: () => ({
+      arr: [
+        { label: '训练', id: '训练' },
+        { label: '比赛', id: '比赛' },
+      ]
+    }),
+  })
+  模式!: string;
+  @EditorIs({
+    label: '射击姿势',
+    component: () => EnumEditorComponent,
+    params: () => ({
+      arr: [
+        { label: '校枪', id: '校枪' },
+        { label: '低强度', id: '低强度' },
+        { label: '高强度', id: '高强度' },
+      ]
+    }),
+  })
+  状态!: string;
   @EditorIs({
     label: '靶位',
     component: () => StringEditorComponent,
@@ -87,6 +122,7 @@ export class BiathlonGradeTableComponent implements OnInit, OnDestroy {
     startDate: string | undefined,
     endDate: string | undefined,
     targetSportsManId?: SportsManEntity['id'],
+    fieldId?: FieldEntity['id'],
   }>;
 
   @Input()
@@ -107,6 +143,7 @@ export class BiathlonGradeTableComponent implements OnInit, OnDestroy {
     });
     this.binder = this.factory.create(View, this.injector, this.searchEvent.pipe(
       map(({
+        fieldId,
         targetSportsManId,
         startDate,
         endDate,
@@ -117,7 +154,11 @@ export class BiathlonGradeTableComponent implements OnInit, OnDestroy {
               '': targetSportsManId ? { in: [targetSportsManId] } : undefined,
             },
           },
-          赛场: {},
+          赛场: {
+            id: {
+              '': fieldId ? { in: [fieldId] } : undefined,
+            }
+          },
           时间: {
             '': {
               '': {

@@ -6,8 +6,11 @@
       <th nzWidth="100px">{{'序号'| language | async}}</th>
       <th>{{'运动员'| language | async}}</th>
       <th>{{'赛场'| language | async}}</th>
+      <th>{{'记录组起始时间'| language | async}}</th>
       <th>{{'时间'| language | async}}</th>
       <th>{{'射击姿势'| language | async}}</th>
+      <th>{{'模式'| language | async}}</th>
+      <th>{{'状态'| language | async}}</th>
       <th>{{'准心调教刻度'| language | async}}</th>
       <th>{{'靶位'| language | async}}</th>
       <th>{{'成绩'| language | async}}</th>
@@ -20,8 +23,11 @@
       <td>{{index + 1}}</td>
       <td>{{data['运动员']['姓名']}}</td>
       <td>{{data['赛场']['名称']}}</td>
+      <td>{{data['记录组起始时间']}}</td>
       <td>{{data['时间']}}</td>
       <td>{{data['射击姿势']}}</td>
+      <td>{{data['模式']}}</td>
+      <td>{{data['状态']}}</td>
       <td>{{data['准心调教刻度']}}</td>
       <td>{{data['靶位']}}</td>
       <td>{{(data['成绩']?'命中':'未命中') | language | async}}</td>

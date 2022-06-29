@@ -16,9 +16,11 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NumberEditorComponent } from './editors/number-editor/number-editor.component';
 import { DateEditorComponent } from './editors/date-editor/date-editor.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
-import { NzSwitchModule } from 'ng-zorro-antd';
+import { NzSwitchModule, NzUploadModule } from 'ng-zorro-antd';
 import { WindLogModalBinderFactoryService } from './wind-log-modal-binder-factory.service';
 import { LanguageModule } from '../language/language.module';
+import { EnumEditorComponent } from './editors/enum-editor/enum-editor.component';
+import { FileEditorComponent } from './editors/file-editor/file-editor.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { LanguageModule } from '../language/language.module';
     ItemEditorComponent,
     BoolEditorComponent,
     NumberEditorComponent,
+    EnumEditorComponent,
+    FileEditorComponent,
   ],
   imports: [
     LanguageModule,
@@ -38,6 +42,7 @@ import { LanguageModule } from '../language/language.module';
     NzModalModule,
     NzSelectModule,
     NzButtonModule,
+    NzUploadModule,
     NzFormModule,
     FormsModule,
     CommonModule,
@@ -48,6 +53,8 @@ import { LanguageModule } from '../language/language.module';
     StringEditorComponent,
     ItemEditorComponent,
     BoolEditorComponent,
+    EnumEditorComponent,
+    FileEditorComponent,
   ],
   providers: [
     ModalEditorService,

@@ -129,7 +129,9 @@ class View extends SkijumpGradeEntity {
 })
 export class SkijumpGradeTableComponent implements OnInit {
   searchEvent = new ReplaySubject<null>(1);
-
+  FieldEntity = FieldEntity;
+  fieldEntityLabel = (e: FieldEntity) => e.名称
+  fieldId = null as null | FieldEntity['id'];
   sprotsManName = '';
   timeRange: Date[] = [];
   constructor(
@@ -144,7 +146,9 @@ export class SkijumpGradeTableComponent implements OnInit {
           id: { '': { in: !this.sportsManClickService.sportsManId ? undefined : [this.sportsManClickService.sportsManId] } },
           姓名: { '': { like: this.sprotsManName } }
         },
-        赛场: {},
+        赛场: {
+          id: { '': { in: !this.fieldId ? undefined : [this.fieldId] } }
+        },
         时间: {
           '': {
             moreOrEqual: !this.timeRange[0] ? undefined : dayjs(this.timeRange[0]).startOf('day').format('YYYY-MM-DD HH:mm:ss'),

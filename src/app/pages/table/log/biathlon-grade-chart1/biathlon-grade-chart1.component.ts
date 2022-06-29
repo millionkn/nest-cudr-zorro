@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, Injector, AfterViewInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { ReplaySubject } from 'rxjs/internal/ReplaySubject';
 import * as dayjs from 'dayjs';
-import { BiathlonGradeEntity, SportsManEntity } from 'src/app/entities';
+import { BiathlonGradeEntity, FieldEntity, SportsManEntity } from 'src/app/entities';
 import { concatMap, shareReplay } from 'rxjs/operators';
 import { JsonQueryService } from 'src/app/service/json-query.service';
 import { HttpClient } from '@angular/common/http';
@@ -68,7 +68,8 @@ export class BiathlonGradeChart1Component implements AfterViewInit {
   searchEvent!: Subject<{
     startDate: string | undefined,
     endDate: string | undefined,
-    targetSportsManId?: SportsManEntity['id']
+    targetSportsManId?: SportsManEntity['id'],
+    fieldId?: FieldEntity['id'],
   }>;
 
   async ngAfterViewInit() {
@@ -77,9 +78,11 @@ export class BiathlonGradeChart1Component implements AfterViewInit {
       concatMap(({
         startDate,
         endDate,
+        fieldId,
         targetSportsManId,
       }) => this.http.post<{ 命中: [number, number, number][], 未命中: [number, number, number][] }>(`api/biathlon-grade-chart1`, {
         sportsManId: targetSportsManId,
+        fieldId,
         startDate,
         endDate,
         direction,

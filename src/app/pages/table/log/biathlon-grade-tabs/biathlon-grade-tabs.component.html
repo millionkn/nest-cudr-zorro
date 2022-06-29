@@ -2,6 +2,13 @@
   <nz-header>
     <div class="filter">
       <div>
+        <span>{{'赛场'| language | async}}</span>
+        <div>
+          <app-filter-selector [(ngModel)]="fieldId" [klass]="FieldEntity" [label]="fieldEntityLabel">
+          </app-filter-selector>
+        </div>
+      </div>
+      <div>
         <span>{{'运动员姓名'| language | async}}</span>
         <div>
           <nz-select nzShowSearch nzAllowClear nzPlaceHolder="请选择" [(ngModel)]="targetSportsManId">
@@ -36,6 +43,9 @@
   </nz-header>
   <nz-content style="width:100%;">
     <nz-tabset nzTabPosition="top">
+      <nz-tab [nzTitle]="'分组模式' | language | async">
+        <app-biathlon-grade-table2 [searchEvent]="out$"></app-biathlon-grade-table2>
+      </nz-tab>
       <nz-tab [nzTitle]="'表格模式' | language | async">
         <app-biathlon-grade-table [searchEvent]="out$" [addEvent]="add$" (addSuccess)="searchEvent.next(null)"></app-biathlon-grade-table>
       </nz-tab>

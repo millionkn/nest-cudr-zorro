@@ -93,8 +93,8 @@ export class SportsManStateTableComponent implements OnInit {
         },
         时间: {
           '': {
-            moreOrEqual: dayjs(this.timeRange[0]).format('YYYY-MM-DD HH:mm:ss'),
-            lessOrEqual: dayjs(this.timeRange[1]).format('YYYY-MM-DD HH:mm:ss'),
+            moreOrEqual: !this.timeRange[0] ? undefined : dayjs(this.timeRange[0]).format('YYYY-MM-DD HH:mm:ss'),
+            lessOrEqual: !this.timeRange[1] ? undefined : dayjs(this.timeRange[1]).format('YYYY-MM-DD HH:mm:ss'),
           }
         }
       };

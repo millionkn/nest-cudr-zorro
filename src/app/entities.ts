@@ -57,8 +57,11 @@ export class WindLogEntity extends CudrBase<'WindLogEntity'> {
 export class BiathlonGradeEntity extends CudrBase<'BiathlonGrade'> {
   运动员!: SportsManEntity;
   赛场!: FieldEntity;
+  记录组起始时间!: string
   时间!: DateString;
   射击姿势!: string;
+  模式!: string;
+  状态!: string;
   准心调教刻度!: string;
   成绩!: boolean;
   记录人!: string;
@@ -87,6 +90,7 @@ export class SkijumpGradeEntity extends CudrBase<'SkijumpGradeEntity'> {
 export class MovieUrlEntity extends CudrBase<'MovieUrlEntity'> {
   赛场!: FieldEntity;
   关键字!: string;
+  数据类型!: '照片' | '视频'
   影像url!: string;
   时间!: DateString;
 }
