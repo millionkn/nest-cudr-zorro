@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  height: 100%;
+
+  ::ng-deep {
+    .ant-card {
+      display: flex;
+      flex-direction: column;
+      .ant-card-head-title{
+        font-size: 24px;
+      }
+      .ant-card-body {
+        flex: 1;
+        height: 0;
+        width: 100%;
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@ import { FieldEntity, SportsManEntity } from 'src/app/entities';
 import * as dayjs from 'dayjs';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SportsManClickService } from 'src/app/service/sportsManClick.serivce';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-biathlon-grade-tabs',
@@ -17,21 +17,18 @@ export class BiathlonGradeTabsComponent implements OnInit {
   constructor(
     @Inject(JsonQueryService) private jsonQuery: JsonQueryService,
     @Inject(HttpClient) private http: HttpClient,
-    @Inject(SportsManClickService) private sportsManClickService: SportsManClickService,
+    @Inject(ActivatedRoute) private route: ActivatedRoute,
   ) {
-    this.targetSportsManId = this.sportsManClickService.sportsManId || undefined
-    this.sportsManClickService.sportsManId = null
   }
   FieldEntity = FieldEntity;
   fieldEntityLabel = (e: FieldEntity) => e.名称
   fieldId = null as null | FieldEntity['id'];
 
-  targetSportsManId: undefined | SportsManEntity['id']
+  targetSportsManId = this.route.snapshot.queryParams['sportsManId'] || undefined
   timeRange: Date[] = [
   ];
   searchEvent = new BehaviorSubject(null);
   out$ = this.searchEvent.pipe(map(() => {
-    console.log(111,)
     return {
       startDate: !this.timeRange[0] ? undefined : dayjs(this.timeRange[0]).format('YYYY-MM-DD HH:mm:ss'),
       endDate: !this.timeRange[1] ? undefined : dayjs(this.timeRange[1]).format('YYYY-MM-DD HH:mm:ss'),

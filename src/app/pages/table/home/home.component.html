@@ -1,0 +1,81 @@
+<nz-layout style="width:100%;height:100%">
+  <nz-content style="display:flex;height:100%;width:100%;flex-direction: column;">
+    <div nz-row [nzGutter]="16" style="width:100%;">
+      <div nz-col [nzSpan]="6">
+        <nz-card>
+          <nz-statistic [nzValue]="(count1$|async|number)" [nzTitle]="'场地数量'" nzSuffix="个"></nz-statistic>
+        </nz-card>
+      </div>
+      <div nz-col [nzSpan]="6">
+        <nz-card>
+          <nz-statistic [nzValue]="(count2$|async|number)" [nzTitle]="'数据总量'" nzSuffix="条"></nz-statistic>
+        </nz-card>
+      </div>
+      <div nz-col [nzSpan]="6">
+        <nz-card>
+          <nz-statistic [nzValue]="(count3$|async|number)" [nzTitle]="'风场记录时长'"  nzSuffix="小时"></nz-statistic>
+        </nz-card>
+      </div>
+      <div nz-col [nzSpan]="6">
+        <nz-card>
+          <nz-statistic [nzValue]="(count4$|async|number)" [nzTitle]="'训练记录数量'" nzSuffix="条"></nz-statistic>
+        </nz-card>
+      </div>
+    </div>
+    <div style="margin:8px"></div>
+    <div nz-row [nzGutter]="16" style="width:100%;flex:1;height:0px">
+      <div nz-col [nzSpan]="12" style="height:100%" *ngIf="gradeType === 'biathlon'">
+        <nz-card nzTitle="射击成绩" style="width:100%;height:100%;">
+          <canvas #chart11 style="width:100%;height:100%;"></canvas>
+        </nz-card>
+      </div>
+      <div nz-col [nzSpan]="12" style="height:100%" *ngIf="gradeType === 'skijump'">
+        <nz-card nzTitle="滑雪成绩" style="width:100%;height:100%;">
+          <canvas #chart12 style="width:100%;height:100%;"></canvas>
+        </nz-card>
+      </div>
+      <div nz-col [nzSpan]="6" style="height:100%" *ngIf="gradeType === 'free_skijump'">
+        <nz-card nzTitle="自由滑雪成绩(男子)" style="width:100%;height:100%;">
+          <canvas #chart13 style="width:100%;height:100%;"></canvas>
+        </nz-card>
+      </div>
+      <div nz-col [nzSpan]="6" style="height:100%" *ngIf="gradeType === 'free_skijump'">
+        <nz-card nzTitle="自由滑雪成绩(女子)" style="width:100%;height:100%;">
+          <canvas #chart14 style="width:100%;height:100%;"></canvas>
+        </nz-card>
+      </div>
+      
+      <div nz-col [nzSpan]="12" style="height:100%">
+        <nz-card nzTitle="数据分布" style="width:100%;height:100%;">
+          <canvas #chart2 style="width:100%;height:100%;"></canvas>
+        </nz-card>
+      </div>
+    </div>
+    <div style="margin:8px"></div>
+    <div nz-row style="width:100%;flex:1;height:0px">
+      <nz-card nzTitle="风环境趋势" style="width:100%;height:100%;" [nzExtra]="selectWindLog">
+        <canvas #chart3 style="width:100%;height:100%;"></canvas>
+      </nz-card>
+    </div>
+  </nz-content>
+</nz-layout>
+<ng-template #selectWindLog>
+  <span style="margin:8px">赛场:</span>
+  <span>
+    <nz-select [ngModel]="chart3FieldId$|async" (ngModelChange)="chart3FieldId$.next($event)">
+      <nz-option *ngFor="let item of chart3FieldArr$|async" [nzValue]="item.id" [nzLabel]="item.name">
+      </nz-option>
+    </nz-select>
+  </span>
+  <span style="margin:8px">测风仪:</span>
+  <span>
+    <nz-select [ngModel]="chart3AnemometerId$|async" (ngModelChange)="chart3AnemometerId$.next($event)">
+      <nz-option *ngFor="let item of chart3AnemometerArr$|async" [nzValue]="item.id" [nzLabel]="item.name">
+      </nz-option>
+    </nz-select>
+  </span>
+  <span style="margin:8px">日期:</span>
+  <span>
+    <nz-range-picker [ngModel]="chart3Date$|async" (ngModelChange)="chart3Date$.next($event)"></nz-range-picker>
+  </span>
+</ng-template>

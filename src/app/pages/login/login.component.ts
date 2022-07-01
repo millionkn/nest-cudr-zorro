@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd';
 import { LoginService } from 'src/app/service/login.service';
-import { SportsManClickService } from 'src/app/service/sportsManClick.serivce';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +18,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private message: NzMessageService,
     private login: LoginService,
-    private sportsManClick: SportsManClickService,
   ) {
   }
 
@@ -39,7 +37,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  async submitForm(base: 'skijump' | 'biathlon') {
+  async submitForm(base: 'skijump' | 'biathlon' | 'free_skijump') {
     for (const i in this.validateForm.controls) {
       if (this.validateForm.controls.hasOwnProperty(i)) {
         this.validateForm.controls[i].markAsDirty();
@@ -52,14 +50,12 @@ export class LoginComponent implements OnInit {
     if (username !== '' && password !== '') {
       try {
         await this.login.login(username, password, base);
-        this.router.navigate(['/table', base]);
+        this.router.navigate(['/table']);
       } catch (e) {
         this.message.error('登录失败');
         return;
       }
     }
-
-    this.sportsManClick.base = base
 
     if (this.validateForm.value.remember) {
       window.localStorage.setItem('vremember', this.validateForm.value.remember.toString());

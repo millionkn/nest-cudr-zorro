@@ -12,6 +12,7 @@ import { DateString } from 'src/app/utils/entity';
 import * as dayjs from 'dayjs';
 import { WindLogModalBinderFactoryService } from 'src/app/modal-editor/wind-log-modal-binder-factory.service';
 import { HttpClient } from '@angular/common/http';
+import { LoginService } from 'src/app/service/login.service';
 
 @EditorTitle('风环境记录')
 class View extends WindLogEntity {
@@ -86,10 +87,14 @@ export class WindLogTableComponent implements OnInit {
     @Inject(WindLogModalBinderFactoryService) private factory: WindLogModalBinderFactoryService,
     @Inject(JsonQueryService) private jsonQuery: JsonQueryService,
     @Inject(HttpClient) private http: HttpClient,
+    @Inject(LoginService) private loginServ: LoginService,
   ) { }
   targetFieldId!: FieldEntity['id'];
   timeRange: Date[] = [
   ];
+
+  showMode1 = this.loginServ.windLog1()
+  showMode2 = this.loginServ.windLog2()
 
   fieldArray$ = this.jsonQuery.query(FieldEntity, { where: {} }).then(({ data }) => data);
   binder = this.factory.create(View, this.injector, this.searchEvent.pipe(

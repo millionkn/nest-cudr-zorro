@@ -91,7 +91,7 @@ nz-content {
 }
 
 .inner-content {
-  min-height: 100%;
+  height: 100%;
 }
 
 .header-toolbar ::ng-deep [nz-button] {
@@ -105,12 +105,3 @@ nz-content {
 ::ng-deep .ant-menu-inline .ant-menu-submenu-title{
   font-size: 20px;
 }
-
-.big-font{
-  ::ng-deep *{
-    font-size: large;
-  }
-  ::ng-deep .ant-btn {
-    line-height: 1.3715;
-  }
-} 

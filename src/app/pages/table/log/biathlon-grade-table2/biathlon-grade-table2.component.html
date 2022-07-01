@@ -8,12 +8,13 @@
       <th>{{'射击姿势'| language | async}}</th>
       <th>{{'模式'| language | async}}</th>
       <th>{{'状态'| language | async}}</th>
+      <th>{{'靶位'| language | async}}</th>
       <th>{{'记录组起始时间'| language | async}}</th>
-      <th>激发间隔(秒)/成绩-1</th>
-      <th>激发间隔(秒)/成绩-2</th>
-      <th>激发间隔(秒)/成绩-3</th>
-      <th>激发间隔(秒)/成绩-4</th>
-      <th>激发间隔(秒)/成绩-5</th>
+      <th>间隔(秒)/成绩-1</th>
+      <th>间隔(秒)/成绩-2</th>
+      <th>间隔(秒)/成绩-3</th>
+      <th>间隔(秒)/成绩-4</th>
+      <th>间隔(秒)/成绩-5</th>
       <th>总计</th>
       <th>{{'记录人'| language | async}}</th>
     </tr>
@@ -26,6 +27,7 @@
       <td>{{data['射击姿势']}}</td>
       <td>{{data['模式']}}</td>
       <td>{{data['状态']}}</td>
+      <td>{{data['靶位']}}</td>
       <td>{{data['记录组起始时间']|date:'yyyy-MM-dd hh:mm:ss'}}</td>
       <td>{{data['时间1'] | number:'1.1-1' }}/{{data['成绩1'] ? '命中' : '未命中'}}</td>
       <td>{{data['时间2'] | number:'1.1-1'}}/{{data['成绩2'] ? '命中' : '未命中'}}</td>

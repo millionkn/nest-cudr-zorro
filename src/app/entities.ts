@@ -29,6 +29,8 @@ export class FieldEntity extends CudrBase<'FieldEntity'> {
   名称!: string;
   国家!: string;
   城市!: string;
+  观测时长!: number;
+  记录时间段!: string;
   备注!: string;
 }
 
@@ -51,6 +53,19 @@ export class WindLogEntity extends CudrBase<'WindLogEntity'> {
   风速!: string;
   温度!: string;
   气压!: string;
+}
+
+@Entity('FreeSkijumpGrade')
+export class FreeSkijumpGradeEntity extends CudrBase<'FreeSkijumpGradeEntity'> {
+  运动员!: SportsManEntity;
+  赛场!: FieldEntity;
+  出发时间!: DateString;
+  起滑点位置!: number;
+  赛道风指数!: number;
+  _1号风指数!: number;
+  温度!: number;
+  滑行速度!: number;
+  情况说明!: string;
 }
 
 @Entity('BiathlonGrade')

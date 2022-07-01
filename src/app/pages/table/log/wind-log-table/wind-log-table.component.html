@@ -47,8 +47,10 @@
           <th>{{'时间'| language | async}}</th>
           <th>{{'风向'| language | async}}(°)</th>
           <th>{{'风速'| language | async}}(m/s)</th>
-          <th>{{'温度'| language | async}}(℃)</th>
-          <th>{{'气压'| language | async}}(hPa)</th>
+          <th *ngIf="showMode1">{{'温度'| language | async}}(℃)</th>
+          <th *ngIf="showMode1">{{'气压'| language | async}}(hPa)</th>
+          <th *ngIf="showMode2">{{'赛道风指数'| language | async}}</th>
+          <th *ngIf="showMode2">{{'综合赛道风指数'| language | async}}</th>
           <th nzWidth="140px" nzRight="0px" nzAlign="center">{{'操作'| language | async}}</th>
         </tr>
       </thead>
@@ -60,8 +62,10 @@
           <td>{{data['时间']}}</td>
           <td>{{data['风向']}}</td>
           <td>{{data['风速']}}</td>
-          <td>{{data['温度']}}</td>
-          <td>{{data['气压']}}</td>
+          <td *ngIf="showMode1">{{data['温度'] === null ? '--' : data['温度']}}</td>
+          <td *ngIf="showMode1">{{data['气压'] === null ? '--' : data['气压']}}</td>
+          <td *ngIf="showMode2">{{data['赛道风指数'] === null ? '--' : data['赛道风指数']}}</td>
+          <td *ngIf="showMode2">{{data['综合赛道风指数'] === null ? '--' : data['综合赛道风指数']}}</td>
           <td nzAlign="center">
             <a (click)="binder.editHandler(data)">{{'编辑'| language | async}}</a>
             <nz-divider nzType="vertical"></nz-divider>

@@ -12,9 +12,11 @@ import { BiathlonGradeChart1Component } from './biathlon-grade-chart1/biathlon-g
 import { ExcelDataModule } from 'src/app/excel-data/excel-data.module';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { BiathlonGradeTable2Component } from './biathlon-grade-table2/biathlon-grade-table2.component';
+import { SkijumpFreeGradeTableComponent } from './skijump-free-grade-table/skijump-free-grade-table.component';
 
 @NgModule({
   declarations: [
+    SkijumpFreeGradeTableComponent,
     SportsManStateTableComponent,
     WindLogTableComponent,
     SkijumpGradeTableComponent,

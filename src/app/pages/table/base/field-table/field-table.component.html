@@ -34,12 +34,9 @@
     </div>
   </nz-header>
   <nz-content>
-    <nz-table #table nzShowSizeChanger [nzFrontPagination]="false" 
-    [nzData]="binder.data$ | async"
-      (nzPageSizeChange)="binder.pageSizeChangeHandler($event)" 
-      [nzTotal]="binder.total$ | async"
-      (nzPageIndexChange)="binder.pageIndexChangeHandler($event)" 
-      [nzLoading]="binder.loading$ | async">
+    <nz-table #table nzShowSizeChanger [nzFrontPagination]="false" [nzData]="binder.data$ | async"
+      (nzPageSizeChange)="binder.pageSizeChangeHandler($event)" [nzTotal]="binder.total$ | async"
+      (nzPageIndexChange)="binder.pageIndexChangeHandler($event)" [nzLoading]="binder.loading$ | async">
       <thead>
         <tr>
           <th nzWidth="100px">{{'序号'| language | async}}</th>
@@ -47,7 +44,7 @@
           <th>{{'国家'| language | async}}</th>
           <th>{{'城市'| language | async}}</th>
           <th>{{'备注'| language | async}}</th>
-          <th nzWidth="140px" nzRight="0px" nzAlign="center">{{'操作'| language | async}}</th>
+          <th nzWidth="340px" nzRight="0px" nzAlign="center">{{'操作'| language | async}}</th>
         </tr>
       </thead>
       <tbody>
@@ -58,6 +55,10 @@
           <td>{{data['城市']}}</td>
           <td>{{data['备注']}}</td>
           <td nzAlign="center">
+            <a (click)="showMovie(data)">{{'查看影像'| language | async}}</a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a (click)="showPhoto(data)">{{'查看照片'| language | async}}</a>
+            <nz-divider nzType="vertical"></nz-divider>
             <a (click)="binder.editHandler(data)">{{'编辑'| language | async}}</a>
             <nz-divider nzType="vertical"></nz-divider>
             <a (click)="binder.deleteHandler(data)">{{'删除'| language | async}}</a>
@@ -67,3 +68,19 @@
     </nz-table>
   </nz-content>
 </nz-layout>
+
+<nz-modal [(nzVisible)]="showPhotoUrl" [nzTitle]="'查看照片' | language | async" (nzOnOk)="closeShow()"
+  (nzOnCancel)="closeShow()" nzWidth="720">
+  <div style="display:flex;justify-content:center">
+    <img [src]="showPhotoUrl" style="max-width:720px;max-height:540px" />
+  </div>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="showMovieUrl" [nzTitle]="'查看影像' | language | async" (nzOnOk)="closeShow()"
+  (nzOnCancel)="closeShow()" nzWidth="720">
+  <div style="display:flex;justify-content:center" *ngIf="showMovieUrl">
+    <video style="width:100%" controls="controls" autoplay="autoplay" style="width:720px">
+      <source [src]="showMovieUrl" type="video/mp4" style="max-width:720px;max-height:540px" />
+    </video>
+  </div>
+</nz-modal>

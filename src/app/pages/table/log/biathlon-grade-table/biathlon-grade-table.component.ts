@@ -57,9 +57,7 @@ class View extends BiathlonGradeEntity {
   @EditorIs({
     label: '成绩',
     component: () => BoolEditorComponent,
-    params: () => ({
-      allowFloat: true,
-    }),
+    params: () => ({}),
   })
   成绩!: boolean;
   @EditorIs({

@@ -5,10 +5,10 @@ import { FieldTableComponent } from './field-table/field-table.component';
 import { AnemometerTableComponent } from './anemometer-table/anemometer-table.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '运动员信息' },
-  { path: '运动员信息', component: SportsManTableComponent },
-  { path: '赛场信息', component: FieldTableComponent },
-  { path: '测风仪', component: AnemometerTableComponent },
+  { path: '', redirectTo: '运动员管理' },
+  { path: '运动员管理', component: SportsManTableComponent },
+  { path: '赛场管理', component: FieldTableComponent },
+  { path: '设备管理', component: AnemometerTableComponent },
 ];
 
 @NgModule({

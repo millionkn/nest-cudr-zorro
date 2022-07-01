@@ -35,45 +35,33 @@
     <nz-sider class="menu-sidebar" nzCollapsible nzWidth="225px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
       nzTheme="dark" [nzTrigger]="null">
       <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed" nzTheme="dark">
-        <li nz-submenu [nzOpen]="openIndex === 1" (nzOpenChange)="openIndex = 1" [nzTitle]="'基本信息' | language | async"
-          nzIcon="profile">
-          <ul>
-            <li nz-menu-item nzMatchRouter>
-              <a routerLink="base/运动员信息">{{'运动员信息'| language | async}}</a>
-            </li>
-            <li nz-menu-item nzMatchRouter>
-              <a routerLink="base/赛场信息">{{'赛场信息'| language | async}}</a>
-            </li>
-            <li nz-menu-item nzMatchRouter>
-              <a routerLink="base/测风仪">{{'测风仪'| language | async}}</a>
-            </li>
-          </ul>
+        <li nz-menu-item nzMatchRouter>
+          <a routerLink="首页">{{'首页'| language | async}}</a>
         </li>
-        <li nz-submenu [nzOpen]="openIndex === 2" (nzOpenChange)="openIndex = 2" [nzTitle]="'训练记录' | language | async"
-          nzIcon="project">
+        <li nz-submenu [nzOpen]="openIndex === 1" (nzOpenChange)="openIndex = 1"
+          [nzTitle]="'训练比赛大数据库' | language | async">
           <ul>
             <li nz-menu-item nzMatchRouter>
-              <a routerLink="log/体征参数">{{'体征参数'| language | async}}</a>
+              <a routerLink="base/赛场管理">{{'赛场管理'| language | async}}</a>
             </li>
             <li nz-menu-item nzMatchRouter>
-              <a routerLink="log/风环境">{{'风环境'| language | async}}</a>
+              <a routerLink="base/运动员管理">{{'运动员管理'| language | async}}</a>
             </li>
             <li nz-menu-item nzMatchRouter>
-              <a routerLink="log/冬季两项">{{'冬季两项'| language | async}}</a>
+              <a routerLink="base/设备管理">{{'设备管理'| language | async}}</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+              <a [routerLink]="gradeRoute">{{'赛训记录'| language | async}}</a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+              <a routerLink="log/风场记录">{{'风场记录'| language | async}}</a>
             </li>
           </ul>
         </li>
         <li nz-menu-item nzMatchRouter>
-          <a routerLink="other/风向标形态">{{'风向标形态'| language | async}}</a>
+          <a routerLink="other/测风形态数据库">{{'测风形态数据库'| language | async}}</a>
         </li>
-        <li nz-menu-item nzMatchRouter>
-          <a routerLink="other/影像记录">{{'影像记录'| language | async}}</a>
-        </li>
-
       </ul>
-      <span class="sidebar-trigger" (click)="isCollapsed = !isCollapsed">
-        <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
-      </span>
     </nz-sider>
     <nz-content>
       <div class="inner-content">

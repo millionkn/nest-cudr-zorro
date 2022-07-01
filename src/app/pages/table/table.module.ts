@@ -7,17 +7,19 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { FormsModule } from '@angular/forms';
 import { TableComponent } from './table.component';
-import { NzButtonModule } from 'ng-zorro-antd';
+import { NzButtonModule, NzCardModule, NzStatisticModule } from 'ng-zorro-antd';
 import { TablePageModule } from 'src/app/shareModules/table-page/table-page.module';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-import { Table2Component } from './table2.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
+    HomeComponent,
     TableComponent,
-    Table2Component,
   ],
   imports: [
+    NzCardModule,
+    NzStatisticModule,
     NzDropDownModule,
     NzButtonModule,
     TablePageModule,

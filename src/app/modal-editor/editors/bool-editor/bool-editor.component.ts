@@ -10,6 +10,7 @@ import { Subject } from 'rxjs';
 export class BoolEditorComponent implements Editor<boolean, {}>, OnInit {
   value!: boolean;
   setParams(params: {}) {
+    this.value = this.value || false
   }
   newValue = new Subject<void>();
   ngOnInit() {

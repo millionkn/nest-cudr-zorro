@@ -5,7 +5,7 @@ import { MovieUrlTableComponent } from './movie-url-table/movie-url-table.compon
 
 const routes: Routes = [
   { path: '影像记录', component: MovieUrlTableComponent },
-  { path: '风向标形态', component: WindTypeTableComponent }
+  { path: '测风形态数据库', component: WindTypeTableComponent }
 ];
 
 @NgModule({

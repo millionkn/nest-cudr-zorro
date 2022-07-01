@@ -21,6 +21,7 @@ import { WindLogModalBinderFactoryService } from './wind-log-modal-binder-factor
 import { LanguageModule } from '../language/language.module';
 import { EnumEditorComponent } from './editors/enum-editor/enum-editor.component';
 import { FileEditorComponent } from './editors/file-editor/file-editor.component';
+import { FilesEditorComponent } from './editors/files-editor/files-editor.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FileEditorComponent } from './editors/file-editor/file-editor.component
     NumberEditorComponent,
     EnumEditorComponent,
     FileEditorComponent,
+    FilesEditorComponent,
   ],
   imports: [
     LanguageModule,

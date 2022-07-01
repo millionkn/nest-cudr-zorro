@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, Injector } from '@angular/core';
-import { SkijumpGradeEntity, SportsManEntity, FieldEntity } from 'src/app/entities';
+import { SportsManEntity, FieldEntity, FreeSkijumpGradeEntity } from 'src/app/entities';
 import { ModalBinderFactoryService } from 'src/app/modal-editor/modal-binder-factory.service';
 import { EditorIs, EditorTitle } from 'src/app/modal-editor/decorators';
 import { StringEditorComponent } from 'src/app/modal-editor/editors/string-editor/string-editor.component';
@@ -14,7 +14,7 @@ import { DateString } from 'src/app/utils/entity';
 import { ActivatedRoute } from '@angular/router';
 
 @EditorTitle('滑雪成绩')
-class View extends SkijumpGradeEntity {
+export class View extends FreeSkijumpGradeEntity {
   @EditorIs({
     label: '运动员',
     component: () => ItemEditorComponent,
@@ -39,95 +39,66 @@ class View extends SkijumpGradeEntity {
     params: () => ({
     }),
   })
-  时间!: DateString;
+  出发时间!: DateString;
   @EditorIs({
-    label: '天气',
-    component: () => StringEditorComponent,
-    params: () => ({}),
-  })
-  天气!: string;
-  @EditorIs({
-    label: '气温',
+    label: '起滑点位置',
     component: () => NumberEditorComponent,
     params: () => ({
+      min: -999,
       allowFloat: true,
     }),
   })
-  气温!: number;
+  起滑点位置!: number;
   @EditorIs({
-    label: '气压',
+    label: '赛道风指数',
     component: () => NumberEditorComponent,
     params: () => ({
+      min: -999,
       allowFloat: true,
     }),
   })
-  气压!: number;
+  赛道风指数!: number;
   @EditorIs({
-    label: '体重',
+    label: '_1号风指数',
     component: () => NumberEditorComponent,
     params: () => ({
+      min: -999,
       allowFloat: true,
     }),
   })
-  体重!: number;
+  _1号风指数!: number;
+  @EditorIs({
+    label: '温度',
+    component: () => NumberEditorComponent,
+    params: () => ({
+      min: -999,
+      allowFloat: true,
+    }),
+  })
+  温度!: number;
   @EditorIs({
     label: '滑行速度',
     component: () => NumberEditorComponent,
     params: () => ({
+      min: -999,
       allowFloat: true,
     }),
   })
   滑行速度!: number;
   @EditorIs({
-    label: '滑行姿势',
+    label: '情况说明',
     component: () => StringEditorComponent,
     params: () => ({}),
   })
-  滑行姿势!: string;
-  @EditorIs({
-    label: '出台速度',
-    component: () => NumberEditorComponent,
-    params: () => ({
-      allowFloat: true,
-    }),
-  })
-  出台速度!: number;
-  @EditorIs({
-    label: '空中姿势',
-    component: () => StringEditorComponent,
-    params: () => ({}),
-  })
-  空中姿势!: string;
-  @EditorIs({
-    label: '落地距离',
-    component: () => NumberEditorComponent,
-    params: () => ({
-      allowFloat: true,
-    }),
-  })
-  落地距离!: number;
-  @EditorIs({
-    label: '成绩',
-    component: () => NumberEditorComponent,
-    params: () => ({
-      allowFloat: true,
-    }),
-  })
-  成绩!: number;
-  @EditorIs({
-    label: '记录人',
-    component: () => StringEditorComponent,
-    params: () => ({}),
-  })
-  记录人!: string;
+  情况说明!: string;
 }
 
 @Component({
-  selector: 'app-skijump-grade-table',
-  templateUrl: './skijump-grade-table.component.html',
-  styleUrls: ['./skijump-grade-table.component.scss']
+  selector: 'app-skijump-free-grade-table',
+  templateUrl: './skijump-free-grade-table.component.html',
+  styleUrls: ['./skijump-free-grade-table.component.scss']
 })
-export class SkijumpGradeTableComponent implements OnInit {
+export class SkijumpFreeGradeTableComponent implements OnInit {
   searchEvent = new ReplaySubject<null>(1);
   FieldEntity = FieldEntity;
   fieldEntityLabel = (e: FieldEntity) => e.名称
@@ -150,7 +121,7 @@ export class SkijumpGradeTableComponent implements OnInit {
         赛场: {
           id: { '': { in: !this.fieldId ? undefined : [this.fieldId] } }
         },
-        时间: {
+        出发时间: {
           '': {
             moreOrEqual: !this.timeRange[0] ? undefined : dayjs(this.timeRange[0]).startOf('day').format('YYYY-MM-DD HH:mm:ss'),
             lessOrEqual: !this.timeRange[1] ? undefined : dayjs(this.timeRange[1]).endOf('day').format('YYYY-MM-DD HH:mm:ss'),

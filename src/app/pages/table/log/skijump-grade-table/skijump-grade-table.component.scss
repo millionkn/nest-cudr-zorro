@@ -1,0 +1,8 @@
+:host{
+  ::ng-deep *{
+    font-size: large;
+  }
+  ::ng-deep .ant-btn {
+    line-height: 1.3715;
+  }
+}

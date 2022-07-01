@@ -5,6 +5,7 @@ import { TablePageModule } from 'src/app/shareModules/table-page/table-page.modu
 import { BaseRoutingModule } from './base-routing.module';
 import { FieldTableComponent } from './field-table/field-table.component';
 import { AnemometerTableComponent } from './anemometer-table/anemometer-table.component';
+import { NzMessageModule } from 'ng-zorro-antd';
 
 
 
@@ -15,6 +16,7 @@ import { AnemometerTableComponent } from './anemometer-table/anemometer-table.co
     AnemometerTableComponent,
   ],
   imports: [
+    NzMessageModule,
     TablePageModule,
     BaseRoutingModule,
     CommonModule

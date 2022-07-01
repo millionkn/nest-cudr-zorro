@@ -25,12 +25,9 @@ export class BiathlonGradeTable2Component implements OnDestroy, OnInit {
   constructor(
     @Inject(HttpClient) private http: HttpClient,
   ) {
-    this.pageIndex$.subscribe((x) => {
-      console.log('index', x)
-    })
   }
   ngOnInit(): void {
-    const res$ = combineLatest([this.searchEvent, this.pageIndex$.pipe(tap((x) => console.log(2, x))), this.pageSize$.pipe(tap((x) => console.log(3, x)))]).pipe(
+    const res$ = combineLatest([this.searchEvent, this.pageIndex$, this.pageSize$]).pipe(
       switchMap(([search, index, size]) => this.http.post<{ data: any[], total: number }>(`api/biathlon-grade-table2`, {
         ...search,
         page: { index, size },
