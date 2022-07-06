@@ -38,11 +38,11 @@ export class LoginService {
 
   toGradePage(params: { [key: string]: string }) {
     if (this.base === 'free_skijump') {
-      this.router.navigate(['/table', 'skijump', 'log', '自由滑雪'], { queryParams: params })
+      this.router.navigate(['/table', 'log', '自由滑雪'], { queryParams: params })
     } else if (this.base === 'skijump') {
-      this.router.navigate(['/table', 'skijump', 'log', '滑雪成绩'], { queryParams: params })
+      this.router.navigate(['/table', 'log', '滑雪成绩'], { queryParams: params })
     } else {
-      this.router.navigate(['/table', 'biathlon', 'log', '冬季两项'], { queryParams: params })
+      this.router.navigate(['/table', 'log', '冬季两项'], { queryParams: params })
     }
   }
 

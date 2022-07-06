@@ -1,7 +1,7 @@
 import { Component, Inject, AfterViewInit, ViewChild, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { debounceTime, map, shareReplay, switchMap, takeUntil } from 'rxjs/operators';
-import { BehaviorSubject, combineLatest, from, of, Subject, timer } from 'rxjs';
+import { BehaviorSubject, combineLatest, from, Subject, timer } from 'rxjs';
 import { LoginService } from 'src/app/service/login.service';
 import { JsonQueryService } from 'src/app/service/json-query.service';
 import { AnemometerEntity, FieldEntity } from 'src/app/entities';
@@ -76,13 +76,22 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.chart11?.nativeElement) {
       const element = this.chart11.nativeElement
       const chart = echarts.init(element);
-      dispose.push(() => chart.dispose())
+      const handler = () => chart.resize({
+        width: element.clientWidth,
+        height: element.clientHeight,
+      })
+      dispose.push(() => {
+        chart.dispose()
+        window.removeEventListener(`resize`, handler)
+      })
+      window.addEventListener(`resize`, handler)
       this.http.post<{
         sportsManName: string;
         value: number;
       }[]>('api/home/chart1-1', {}).subscribe((arr) => {
         chart.setOption({
           grid: {
+            top: '2%',
             left: '2%',
             right: '2%',
             bottom: '2%',
@@ -108,22 +117,28 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           ]
         })
-        chart.resize({
-          width: element.clientWidth,
-          height: element.clientHeight,
-        })
+        handler()
       })
     }
     if (this.chart12?.nativeElement) {
       const element = this.chart12.nativeElement
       const chart = echarts.init(element);
-      dispose.push(() => chart.dispose())
+      const handler = () => chart.resize({
+        width: element.clientWidth,
+        height: element.clientHeight,
+      })
+      dispose.push(() => {
+        chart.dispose()
+        window.removeEventListener(`resize`, handler)
+      })
+      window.addEventListener(`resize`, handler)
       this.http.post<{
         sportsManName: string;
         value: number;
       }[]>('api/home/chart1-2', {}).subscribe((arr) => {
         chart.setOption({
           grid: {
+            top: '2%',
             left: '2%',
             right: '2%',
             bottom: '2%',
@@ -149,19 +164,25 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           ]
         })
-        chart.resize({
-          width: element.clientWidth,
-          height: element.clientHeight,
-        })
+        handler()
       })
     }
     if (this.chart13?.nativeElement) {
       const element = this.chart13.nativeElement
       const chart = echarts.init(element);
-      dispose.push(() => chart.dispose())
+      const handler = () => chart.resize({
+        width: element.clientWidth,
+        height: element.clientHeight,
+      })
+      dispose.push(() => {
+        chart.dispose()
+        window.removeEventListener(`resize`, handler)
+      })
+      window.addEventListener(`resize`, handler)
       timer(500).subscribe(() => {
         chart.setOption({
           grid: {
+            top: '2%',
             left: '2%',
             right: '2%',
             bottom: '2%',
@@ -210,19 +231,25 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
             },
           ]
         })
-        chart.resize({
-          width: element.clientWidth,
-          height: element.clientHeight,
-        })
+        handler()
       })
     }
     if (this.chart14?.nativeElement) {
       const element = this.chart14.nativeElement
       const chart = echarts.init(element);
-      dispose.push(() => chart.dispose())
+      const handler = () => chart.resize({
+        width: element.clientWidth,
+        height: element.clientHeight,
+      })
+      dispose.push(() => {
+        chart.dispose()
+        window.removeEventListener(`resize`, handler)
+      })
+      window.addEventListener(`resize`, handler)
       timer(500).subscribe(() => {
         chart.setOption({
           grid: {
+            top: '2%',
             left: '2%',
             right: '2%',
             bottom: '2%',
@@ -276,17 +303,23 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
             },
           ]
         })
-        chart.resize({
-          width: element.clientWidth,
-          height: element.clientHeight,
-        })
+        handler()
       })
     }
     if (this.chart2.nativeElement) {
-      const chart2 = echarts.init(this.chart2.nativeElement);
-      dispose.push(() => chart2.dispose())
+      const element = this.chart2.nativeElement
+      const chart = echarts.init(element);
+      const handler = () => chart.resize({
+        width: element.clientWidth,
+        height: element.clientHeight,
+      })
+      dispose.push(() => {
+        chart.dispose()
+        window.removeEventListener(`resize`, handler)
+      })
+      window.addEventListener(`resize`, handler)
       this.chart2$.subscribe((arr) => {
-        chart2.setOption({
+        chart.setOption({
           tooltip: {
             trigger: 'item'
           },
@@ -299,9 +332,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
               type: 'pie',
               radius: '70%',
               data: arr,
-              label:{
-                normal:{
-                  formatter:'{b}:{d}%'
+              label: {
+                normal: {
+                  formatter: '{b}:{d}%'
                 },
               },
               emphasis: {
@@ -314,15 +347,21 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           ]
         })
-        chart2.resize({
-          width: this.chart2.nativeElement.clientWidth,
-          height: this.chart2.nativeElement.clientHeight,
-        })
+        handler()
       })
     }
     if (this.chart3.nativeElement) {
-      const chart3 = echarts.init(this.chart3.nativeElement);
-      dispose.push(() => chart3.dispose())
+      const element = this.chart3.nativeElement
+      const chart = echarts.init(element);
+      const handler = () => chart.resize({
+        width: element.clientWidth,
+        height: element.clientHeight,
+      })
+      dispose.push(() => {
+        chart.dispose()
+        window.removeEventListener(`resize`, handler)
+      })
+      window.addEventListener(`resize`, handler)
       combineLatest([
         this.chart3AnemometerId$,
         this.chart3Date$,
@@ -335,8 +374,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         })),
         takeUntil(this.dispose$),
       ).subscribe(async (arr) => {
-        chart3.setOption({
+        chart.setOption({
           grid: {
+            top: '2%',
             left: '2%',
             right: '2%',
             bottom: '2%',
@@ -360,10 +400,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           ]
         })
-        chart3.resize({
-          width: this.chart3.nativeElement.clientWidth,
-          height: this.chart3.nativeElement.clientHeight,
-        })
+        handler()
       })
     }
     this.dispose$.subscribe(() => {
