@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: '', redirectTo: '体征参数', },
   { path: '体征参数', component: SportsManStateTableComponent },
   { path: '风场记录', component: WindLogTableComponent },
-  { path: '自由滑雪', component: SkijumpFreeGradeTableComponent },
+  { path: '空中技巧', component: SkijumpFreeGradeTableComponent },
   { path: '滑雪成绩', component: SkijumpGradeTableComponent },
   { path: '冬季两项', component: BiathlonGradeTabsComponent },
 ];

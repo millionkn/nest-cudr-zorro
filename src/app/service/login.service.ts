@@ -28,7 +28,7 @@ export class LoginService {
 
   gradeRoute() {
     if (this.base === 'free_skijump') {
-      return `log/自由滑雪`
+      return `log/空中技巧`
     } else if (this.base === 'skijump') {
       return `log/滑雪成绩`
     } else {
@@ -38,7 +38,7 @@ export class LoginService {
 
   toGradePage(params: { [key: string]: string }) {
     if (this.base === 'free_skijump') {
-      this.router.navigate(['/table', 'log', '自由滑雪'], { queryParams: params })
+      this.router.navigate(['/table', 'log', '空中技巧'], { queryParams: params })
     } else if (this.base === 'skijump') {
       this.router.navigate(['/table', 'log', '滑雪成绩'], { queryParams: params })
     } else {
