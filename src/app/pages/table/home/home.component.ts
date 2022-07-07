@@ -264,6 +264,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
             },
           },
           yAxis: {
+            max: (val: { max: number, min: number }) => val.max * 2,
             type: 'value',
             name: `得分`,
           },
