@@ -15,7 +15,7 @@ const table: any = {
   冬季两项: 'Biathlon',
   其他信息: 'Other information',
   影像记录: 'Image records',
-  测风仪: 'Anemometer',
+  风速仪: 'Anemometer',
   风向标形态: 'Wind vane',
   序号: 'Serial number',
   编号: 'Identifier',

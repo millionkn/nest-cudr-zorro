@@ -26,7 +26,7 @@ class View extends WindLogEntity {
   })
   赛场!: FieldEntity;
   @EditorIs({
-    label: '测风仪',
+    label: '风速仪',
     component: () => ItemEditorComponent,
     params: () => ({
       klass: () => AnemometerEntity,

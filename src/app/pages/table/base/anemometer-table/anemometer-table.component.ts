@@ -9,7 +9,7 @@ import { QueryOption } from 'src/app/service/json-query.service';
 import { ItemEditorComponent } from 'src/app/modal-editor/editors/item-editor/item-editor.component';
 import { NumberEditorComponent } from 'src/app/modal-editor/editors/number-editor/number-editor.component';
 
-@EditorTitle('测风仪')
+@EditorTitle('风速仪')
 class View extends AnemometerEntity {
   @EditorIs({
     label: '赛场',

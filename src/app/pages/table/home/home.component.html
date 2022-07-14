@@ -3,7 +3,7 @@
     <div nz-row [nzGutter]="16" style="width:100%;">
       <div nz-col [nzSpan]="6">
         <nz-card>
-          <nz-statistic [nzValue]="(count1$|async|number)" [nzTitle]="'场地数量'" nzSuffix="个"></nz-statistic>
+          <nz-statistic [nzValue]="(count1$|async|number)" [nzTitle]="'赛场数量'" nzSuffix="个"></nz-statistic>
         </nz-card>
       </div>
       <div nz-col [nzSpan]="6">
@@ -30,7 +30,7 @@
         </nz-card>
       </div>
       <div nz-col [nzSpan]="12" style="height:100%" *ngIf="gradeType === 'skijump'">
-        <nz-card nzTitle="滑雪成绩" style="width:100%;height:100%;">
+        <nz-card nzTitle="跳台成绩" style="width:100%;height:100%;">
           <div #chart12 style="width:100%;height:100%;"></div>
         </nz-card>
       </div>
@@ -67,7 +67,7 @@
       </nz-option>
     </nz-select>
   </span>
-  <span style="margin:8px">测风仪:</span>
+  <span style="margin:8px">风速仪:</span>
   <span>
     <nz-select [ngModel]="chart3AnemometerId$|async" (ngModelChange)="chart3AnemometerId$.next($event)">
       <nz-option *ngFor="let item of chart3AnemometerArr$|async" [nzValue]="item.id" [nzLabel]="item.name">

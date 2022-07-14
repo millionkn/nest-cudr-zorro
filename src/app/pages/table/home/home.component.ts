@@ -197,6 +197,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
             },
           },
           yAxis: {
+            max: (val: { max: number, min: number }) => val.max * 2,
+            interval: 30,
             type: 'value',
             name: `得分`,
           },
@@ -265,6 +267,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           },
           yAxis: {
             max: (val: { max: number, min: number }) => val.max * 2,
+            interval: 30,
             type: 'value',
             name: `得分`,
           },
@@ -386,6 +389,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
           xAxis: {
             type: 'time',
             axisLabel: {
+              fontSize: 16,
               formatter: (str: string) => dayjs(str).format('YYYY-MM-DD HH:mm:ss')
             }
           },

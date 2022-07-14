@@ -11,7 +11,8 @@
       <div>
         <span>{{'运动员姓名'| language | async}}</span>
         <div>
-          <input nz-input placeholder="" [(ngModel)]="sprotsManName" />
+          <app-filter-selector [(ngModel)]="sportManId" [klass]="SportsManEntity" [label]="SportsManEntityLabel">
+          </app-filter-selector>
         </div>
       </div>
       <div>

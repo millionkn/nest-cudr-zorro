@@ -132,7 +132,9 @@ export class SkijumpGradeTableComponent implements OnInit {
   FieldEntity = FieldEntity;
   fieldEntityLabel = (e: FieldEntity) => e.名称
   fieldId = null as null | FieldEntity['id'];
-  sprotsManName = '';
+  sportManId = this.route.snapshot.queryParams['sportsManId'] || ''
+  SportsManEntity = SportsManEntity
+  SportsManEntityLabel = (e: SportsManEntity) => e.姓名
   timeRange: Date[] = [];
   constructor(
     @Inject(Injector) private injector: Injector,
@@ -141,11 +143,9 @@ export class SkijumpGradeTableComponent implements OnInit {
   ) { }
   binder = this.factory.create(View, this.injector, this.searchEvent.pipe(
     map(() => {
-      const sportManId = this.route.snapshot.queryParams['sportsManId']
       const where: QueryOption<View> = {
         运动员: {
-          id: { '': { in: !sportManId ? undefined : [sportManId] } },
-          姓名: { '': { like: this.sprotsManName } }
+          id: { '': { in: !this.sportManId ? undefined : [this.sportManId] } },
         },
         赛场: {
           id: { '': { in: !this.fieldId ? undefined : [this.fieldId] } }
@@ -165,7 +165,7 @@ export class SkijumpGradeTableComponent implements OnInit {
     this.searchEvent.next(null);
   }
   reset() {
-    this.sprotsManName = '';
+    this.sportManId = ''
     this.timeRange = [];
   }
 }

@@ -36,6 +36,10 @@ export class LoginService {
     }
   }
 
+  showWindType() {
+    return this.base !== 'skijump'
+  }
+
   toGradePage(params: { [key: string]: string }) {
     if (this.base === 'free_skijump') {
       this.router.navigate(['/table', 'log', '空中技巧'], { queryParams: params })

@@ -20,7 +20,7 @@ export class TableComponent implements OnInit {
   ) { }
   async ngOnInit() {
   }
-
+  showWindType = this.loginServ.showWindType()
   gradeRoute = this.loginServ.gradeRoute()
   changeLanguage(to: '中文' | 'english') {
     this.language.change(to);

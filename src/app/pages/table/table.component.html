@@ -58,7 +58,7 @@
             </li>
           </ul>
         </li>
-        <li nz-menu-item nzMatchRouter>
+        <li nz-menu-item nzMatchRouter *ngIf="showWindType">
           <a routerLink="other/测风形态数据库">{{'测风形态数据库'| language | async}}</a>
         </li>
       </ul>
